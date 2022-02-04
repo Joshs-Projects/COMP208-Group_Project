@@ -60,6 +60,4 @@ public class PhysicsTester {
         PhysicsTester test = new PhysicsTester();
         test.PhysicsTester();
     }
-
-    //this test
 }
