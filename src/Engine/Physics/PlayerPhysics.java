@@ -1,6 +1,6 @@
-package Engine;
+package Engine.Physics;
 
-public class Physics {
+public class PlayerPhysics extends Physics {
 
     //This determines how much time has passed between each physics update
     private int tickTimeElapsed = 1;
@@ -45,7 +45,7 @@ public class Physics {
         //distance = initialVelocity * time + (0.5 * acceleration * time^2)
         //distance = 0.5 * (initialVelocity + finalVelocity) * time //Often don't have final velocity
         //distance = (finalVelocity * time) - (0.5 * acceleration * time^2) //Often don't have final velocity
-        yDistance = (yVelocity * tickTimeElapsed) + (0.5 * yAcceleration * (tickTimeElapsed * tickTimeElapsed));
+        yDistance = (yVelocity * tickTimeElapsed) + (0.5 * yAcceleration + gravity * (tickTimeElapsed * tickTimeElapsed));
     }
 
     private void CalculateDistance() {
@@ -65,7 +65,7 @@ public class Physics {
     }
 
     public void CalculateYVelocity() {
-        yVelocity = yVelocity + (yAcceleration * tickTimeElapsed);
+        yVelocity = yVelocity + ((yAcceleration + gravity) * tickTimeElapsed);
     }
 
     public void UpdateVelocities() {
@@ -103,11 +103,11 @@ public class Physics {
     }
 
     //Constructor
-    public Physics() {
+    public PlayerPhysics() {
 
     }
 
-    public Physics(double mass, double xInitialPosition, double yInitialPosition, double xInitialVelocity, double yInitialVelocity, double xInitialAcceleration, double yInitialAcceleration){
+    public PlayerPhysics(double mass, double xInitialPosition, double yInitialPosition, double xInitialVelocity, double yInitialVelocity, double xInitialAcceleration, double yInitialAcceleration){
         this.mass = mass;
         this.xPos = xInitialPosition;
         this.yPos = yInitialPosition;
