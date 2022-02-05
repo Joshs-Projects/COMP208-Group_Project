@@ -1,10 +1,8 @@
 import Engine.Renderer;
 
-import java.awt.*;
+public class RendererTester {
 
-public class GraphicsTester {
-
-    public GraphicsTester(){
+    public RendererTester(){
         Renderer display = new Renderer(1200, 720, "Testing");
 
         display.DrawWindow();
@@ -13,6 +11,6 @@ public class GraphicsTester {
     }
 
     public static void main(String args[]){
-        GraphicsTester test = new GraphicsTester();
+        RendererTester test = new RendererTester();
     }
 }

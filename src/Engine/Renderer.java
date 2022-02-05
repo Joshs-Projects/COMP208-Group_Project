@@ -18,8 +18,6 @@ public class Renderer {
         frame.setLayout(null);
         frame.setVisible(true);
 
-        System.out.println("Drawn");
-
     }
 
     public Renderer(int xResolution, int yResolution, String windowTitle/*, Object gameObject*/){
@@ -31,10 +29,4 @@ public class Renderer {
         //this.gameObject = gameObject;
     }
 
-    public static void main(String args[]){
-        Renderer display = new Renderer(720, 400, "testing");
-
-        display.DrawWindow();
-
-    }
 }
