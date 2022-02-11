@@ -1,4 +1,6 @@
-package Engine;
+package Engine.Rendering;
+
+import Engine.Assets;
 
 import javax.swing.*;
 import java.awt.*;

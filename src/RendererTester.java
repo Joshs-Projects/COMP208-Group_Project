@@ -1,4 +1,4 @@
-import Engine.Renderer;
+import Engine.Rendering.Renderer;
 
 public class RendererTester {
 
