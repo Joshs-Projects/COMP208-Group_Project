@@ -1,4 +1,4 @@
-import Engine.Physics.PlayerPhysics;
+import Engine.Physics.CharacterPhysics;
 
 public class PhysicsTester {
 
@@ -10,7 +10,7 @@ public class PhysicsTester {
     private double yInitialAcceleration;
     private double mass;
 
-    private void PrintAllPropertiesOfClassPhysics(PlayerPhysics testPhysics){
+    private void PrintAllPropertiesOfClassPhysics(CharacterPhysics testPhysics){
         System.out.println("Position X: " + testPhysics.getPositionX());
         System.out.println("Position Y: " + testPhysics.getPositionY());
         System.out.println("Velocity X: " + testPhysics.getCurrentXVelocity());
@@ -30,7 +30,7 @@ public class PhysicsTester {
         this.xInitialAcceleration = 0;
         this.yInitialAcceleration = 0;
         this.mass = 10;
-        PlayerPhysics testPhysics = new PlayerPhysics(mass, xInitialPosition, yInitialPosition, xInitialVelocity, yInitialVelocity, xInitialAcceleration, yInitialAcceleration);
+        CharacterPhysics testPhysics = new CharacterPhysics(mass, xInitialPosition, yInitialPosition, xInitialVelocity, yInitialVelocity, xInitialAcceleration, yInitialAcceleration);
         PrintAllPropertiesOfClassPhysics(testPhysics);
 
         testPhysics.PushInX(10);

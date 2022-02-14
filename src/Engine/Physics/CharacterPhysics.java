@@ -1,30 +1,10 @@
 package Engine.Physics;
 
-public class PlayerPhysics extends Physics {
-
-    //This determines how much time has passed between each physics update
-    private int tickTimeElapsed = 1;
-
+public class CharacterPhysics extends Movement {
     private double mass;
 
     private double forcePushedInX;
     private double forcePushedInY;
-
-    //Velocities +ve is up or right
-    private double xVelocity;
-    private double yVelocity;
-
-    //Acceleration +ve is up or right
-    private double xAcceleration;
-    private double yAcceleration;
-
-    //Distance
-    private double xDistance;
-    private double yDistance;
-
-    //Position
-    private double xPos;
-    private double yPos;
 
     //Used to slow down body to zero velocity
     private boolean slowingXToZero;
@@ -33,39 +13,8 @@ public class PlayerPhysics extends Physics {
     private int ticksYToZero;
 
 
-    //Calculate Distance
-    private void CalculateXDistance() {
-        //distance = initialVelocity * time + (0.5 * acceleration * time^2)
-        //distance = 0.5 * (initialVelocity + finalVelocity) * time //Often don't have final velocity
-        //distance = (finalVelocity * time) - (0.5 * acceleration * time^2) //Often don't have final velocity
-        xDistance = (xVelocity * tickTimeElapsed) + (0.5 * xAcceleration * (tickTimeElapsed * tickTimeElapsed));
-    }
-
-    private void CalculateYDistance() {
-        //distance = initialVelocity * time + (0.5 * acceleration * time^2)
-        //distance = 0.5 * (initialVelocity + finalVelocity) * time //Often don't have final velocity
-        //distance = (finalVelocity * time) - (0.5 * acceleration * time^2) //Often don't have final velocity
-        yDistance = (yVelocity * tickTimeElapsed) + (0.5 * yAcceleration + gravity * (tickTimeElapsed * tickTimeElapsed));
-    }
-
-    private void CalculateDistance() {
-        CalculateXDistance();
-        xPos = xPos + xDistance;
-        CalculateYDistance();
-        yPos = yPos + yDistance;
-    }
-
     public void UpdatePosition() {
         CalculateDistance();
-
-    }
-
-    public void CalculateXVelocity() {
-        xVelocity = xVelocity + (xAcceleration * tickTimeElapsed);
-    }
-
-    public void CalculateYVelocity() {
-        yVelocity = yVelocity + ((yAcceleration + gravity) * tickTimeElapsed);
     }
 
     public void UpdateVelocities() {
@@ -91,7 +40,7 @@ public class PlayerPhysics extends Physics {
     }
 
     public void slowXToZero(int ticksToStop){
-        this.xAcceleration = this.xVelocity / ticksToStop;
+        xAcceleration = xVelocity / ticksToStop;
         slowingXToZero = true;
         ticksXToZero = ticksToStop;
     }
@@ -103,11 +52,11 @@ public class PlayerPhysics extends Physics {
     }
 
     //Constructor
-    public PlayerPhysics() {
+    public CharacterPhysics() {
 
     }
 
-    public PlayerPhysics(double mass, double xInitialPosition, double yInitialPosition, double xInitialVelocity, double yInitialVelocity, double xInitialAcceleration, double yInitialAcceleration){
+    public CharacterPhysics(double mass, double xInitialPosition, double yInitialPosition, double xInitialVelocity, double yInitialVelocity, double xInitialAcceleration, double yInitialAcceleration){
         this.mass = mass;
         this.xPos = xInitialPosition;
         this.yPos = yInitialPosition;
@@ -144,6 +93,10 @@ public class PlayerPhysics extends Physics {
 
         UpdateVelocities();
     }
+
+    //These need moving to the Movement class
+    //We also need Setters and Getters of any attributes that might want to be changed without doing so through"Conventional" Physics.
+    //To allow the developer to use the mechanics however they would like for example move a person very quickly
 
     public double getPositionX(){
         return this.xPos;
