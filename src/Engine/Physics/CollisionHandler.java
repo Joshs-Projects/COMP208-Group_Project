@@ -19,5 +19,23 @@ public class CollisionHandler {
         //Then check if any of the other objects boxes are within this box.
         //To save compute time you could keep this information saved either in the class or
 
+        /*
+        If I have a class "A" and I want to use another class "Compute" to compute something over "A"
+        by using some information that can be derived by 2 of "A's" attributes say "x" and "y",
+        but not all objects of "A" will use be computed over by class "Compute" how should I do this.
+        Should I make a child of class "A" say "AB" and then add an attribute "z" = f(x,y) where f is some computation.
+        Or should I save this "z" in the class "Compute". Or maybe just give "A" the attribute "z".
+        Or not save this "z" and just calculate f(x,y) when needed.
+        Or is there some other solution I'm not thinking of and I'm over complicating it.
+
+        I'm wasting system resources by keeping this calculation up to date and by storing its output.
+        To minimise this I could create a child so only the objects derived from the child that need
+        this info have it calculated and stored. For small projects it wouldn't matter but larger ones it might.
+        And the brief is I'm creating code for someone else to use so I can't say if its a small project or a large one.
+        An example of what I'm talking about is if I have a patient and 20% of the patients I dont need to know their BMI.
+        But for 80% I do. The BMI could change due to weight and height. But I dont need the BMI for most patients.
+
+        */
+
     }
 }

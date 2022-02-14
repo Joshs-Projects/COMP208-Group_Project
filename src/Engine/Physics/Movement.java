@@ -1,9 +1,6 @@
 package Engine.Physics;
 
 public class Movement extends Physics{
-    protected double xPos;
-    protected double yPos;
-
     protected double xVelocity;
     protected double yVelocity;
 

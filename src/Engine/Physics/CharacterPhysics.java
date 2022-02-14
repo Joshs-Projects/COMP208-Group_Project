@@ -66,6 +66,8 @@ public class CharacterPhysics extends Movement {
         this.yAcceleration = yInitialAcceleration;
         this.slowingXToZero = false;
         this.slowingYToZero = false;
+
+        //Add setting of the object size using xSize and ySize. These are protected attributes of the Physics class
     }
 
     public void Update(){
@@ -94,8 +96,8 @@ public class CharacterPhysics extends Movement {
         UpdateVelocities();
     }
 
-    //These need moving to the Movement class
-    //We also need Setters and Getters of any attributes that might want to be changed without doing so through"Conventional" Physics.
+    //These need moving to the Movement or Physics class
+    //We also need Setters and Getters of any attributes that might want to be changed without doing so through "Conventional" Physics.
     //To allow the developer to use the mechanics however they would like for example move a person very quickly
 
     public double getPositionX(){
