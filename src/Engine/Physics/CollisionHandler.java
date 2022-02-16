@@ -8,8 +8,22 @@ public class CollisionHandler {
     //As only the physics objects in a particular instance of this class can collide with one another.
     private ArrayList<Physics> allPhysicsObjects = new ArrayList<>();
 
-    public void AddPhysicsObject(Physics newPhysicsObject){
+    private ArrayList<Floor> floors = new ArrayList<>();
+
+    public void addPhysicsObject(Physics newPhysicsObject){
         allPhysicsObjects.add(newPhysicsObject);
+    }
+
+    public void removePhysicsObject(){
+
+    }
+
+    public void addFloor(){
+
+    }
+
+    public void removeFloor(){
+
     }
 
     public void findCollisions(){
@@ -37,5 +51,16 @@ public class CollisionHandler {
 
         */
 
+        //Post vs Pre
+        //Implement both and leave it up to the developer and their purposes.
+
+    }
+
+    public void HandleCollisions(){
+        //When a collision is found handle it on one of a few ways
+        //If one of the colliding bodies is immovable set velocity of other body to 0
+        //If one body is a character and the other is an entity movable calculate resulting movement.
+            //This is similair to both bodies being an entity
+        //If both are characters then use forces of characters to calculate resulting movement
     }
 }
