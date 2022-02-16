@@ -51,7 +51,9 @@ public class PhysicsTester {
         testPhysics.Update();
         PrintAllPropertiesOfClassPhysics(testPhysics);
 
+        //Update this file to run some more indepth testing
 
+        //Create some JUnit tests.
 
 
     }
