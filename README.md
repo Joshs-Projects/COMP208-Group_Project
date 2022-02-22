@@ -14,9 +14,9 @@ Group 14 project for the University of Liverpool
 | Keyboard Inputs        | https://code-knowledge.com/java-create-game-keyadapter/                              |
 
 ## People's work
-*Blaise - Audio
-*Dan - Input
-*James - Physics
-*Josh - Physics
-*Ethan - Graphics
-*Osama - Graphics
+- Blaise - Audio
+- Dan - Input
+- James - Physics
+- Josh - Physics
+- Ethan - Graphics
+- Osama - Graphics
