@@ -6,11 +6,11 @@ public class CollisionHandler {
     //This is to keep track of which objects can collide.
     //The benefit of doing it this way is that you can have multiple planes/depths
     //As only the physics objects in a particular instance of this class can collide with one another.
-    private ArrayList<Physics> allPhysicsObjects = new ArrayList<>();
+    private ArrayList<Movement> allPhysicsObjects = new ArrayList<>();
 
     private ArrayList<Floor> floors = new ArrayList<>();
 
-    public void addPhysicsObject(Physics newPhysicsObject){
+    public void addPhysicsObject(Movement newPhysicsObject){
         allPhysicsObjects.add(newPhysicsObject);
     }
 
@@ -62,5 +62,8 @@ public class CollisionHandler {
         //If one body is a character and the other is an entity movable calculate resulting movement.
             //This is similair to both bodies being an entity
         //If both are characters then use forces of characters to calculate resulting movement
+
+        //Put a default handler in here then let this be overridden if a different behaviour is wanted?
+        //Maybe this should just call objects collision methods with the objects it collides with.
     }
 }

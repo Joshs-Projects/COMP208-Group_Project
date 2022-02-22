@@ -1,5 +1,7 @@
 package Engine.Physics;
 
+import java.util.ArrayList;
+
 public class Movement extends Physics{
     protected double xVelocity;
     protected double yVelocity;
@@ -29,4 +31,24 @@ public class Movement extends Physics{
         CalculateYDistance();
         yPos = yPos + CalculateYDistance();
     }
+
+    //Used when only one collision
+    public void Collision(Movement objectCollidedWith){
+        //Handle the collision with the single object
+    }
+
+    //Used when colliding with multiple objects
+    public void Collision(ArrayList<Movement> objectsCollidedWith){
+        //Handle the collision with multiple objects
+    }
+
+    //Required so the programmer can workout which objects are colliding
+    //Make sure to always give the floor collision first
+    //Return null if no collision with floor?
+    public ArrayList<Movement> GetCollisions(){
+        ArrayList<Movement> allCollisionsWithThis = new ArrayList<>();
+
+        return allCollisionsWithThis;
+    }
+
 }
