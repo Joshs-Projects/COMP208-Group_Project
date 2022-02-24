@@ -14,8 +14,8 @@ public class CollisionHandler {
         allPhysicsObjects.add(newPhysicsObject);
     }
 
-    public void removePhysicsObject(){
-
+    public void removePhysicsObject(Movement newPhysicsObject){
+        allPhysicsObjects.remove(newPhysicsObject);
     }
 
     public void addFloor(){
