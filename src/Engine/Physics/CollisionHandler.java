@@ -14,16 +14,16 @@ public class CollisionHandler {
         allPhysicsObjects.add(newPhysicsObject);
     }
 
-    public void removePhysicsObject(Movement newPhysicsObject){
-        allPhysicsObjects.remove(newPhysicsObject);
+    public void removePhysicsObject(Movement removalPhysicsObject){
+        allPhysicsObjects.remove(removalPhysicsObject);
     }
 
-    public void addFloor(){
-
+    public void addFloor(Floor newFloor){
+        floors.add(newFloor);
     }
 
-    public void removeFloor(){
-
+    public void removeFloor(Floor removalFloor){
+        floors.remove(removalFloor);
     }
 
     public void findCollisions(){

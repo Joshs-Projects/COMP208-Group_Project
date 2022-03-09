@@ -11,6 +11,54 @@ public class Physics {
     protected double xSize;
     protected double ySize;
 
+    public double getGravity() {
+        return gravity;
+    }
+
+    public void setGravity(double gravity) {
+        this.gravity = gravity;
+    }
+
+    public int getTimePerTick() {
+        return timePerTick;
+    }
+
+    public void setTimePerTick(int timePerTick) {
+        this.timePerTick = timePerTick;
+    }
+
+    public double getxPos() {
+        return xPos;
+    }
+
+    public void setxPos(double xPos) {
+        this.xPos = xPos;
+    }
+
+    public double getyPos() {
+        return yPos;
+    }
+
+    public void setyPos(double yPos) {
+        this.yPos = yPos;
+    }
+
+    public double getxSize() {
+        return xSize;
+    }
+
+    public void setxSize(double xSize) {
+        this.xSize = xSize;
+    }
+
+    public double getySize() {
+        return ySize;
+    }
+
+    public void setySize(double ySize) {
+        this.ySize = ySize;
+    }
+
     public Physics(){
 
     }
