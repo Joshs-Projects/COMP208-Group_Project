@@ -9,7 +9,8 @@ public class EntityPhysics extends Movement {
     //Mass
     //Make setters and getters for all relevant attributes.
     //THIS EXCLUDES ATTRIBUTES THAT WERE INHERITED AS THEY SHOULD HAVE PRE-EXISTING SETTERS AND GETTERS
-    protected boolean movable;
+    private boolean movable;
+
 
 
     //default Construtor
@@ -17,5 +18,8 @@ public class EntityPhysics extends Movement {
     }
 
     //2nd construtor
+    public  EntityPhysics(double mass){
+        this.mass = mass;
+    }
 
 }

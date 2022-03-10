@@ -1,7 +1,7 @@
 package Engine.Physics;
 
 public class CharacterPhysics extends Movement {
-    private double mass;
+
 
     private double forcePushedInX;
     private double forcePushedInY;

@@ -6,8 +6,11 @@ public class Movement extends Physics{
     protected double xVelocity;
     protected double yVelocity;
 
+
     protected double xAcceleration;
     protected double yAcceleration;
+
+    protected double mass;
 
     protected void CalculateXVelocity() {
         xVelocity = xVelocity + (xAcceleration * timePerTick);
