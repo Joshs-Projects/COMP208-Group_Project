@@ -23,8 +23,6 @@ class PhysicsTest {
     int i_rangeMin = -100, i_rangeMax = 100;
     int i_xRangeMin = 0, i_xRangeMax = 40000;
     int i_yRangeMin = 0, i_yRangeMax = 40000;
-    int i_xSizeRangeMin = 0, i_xSizeMax = 40000;
-    int i_ySizeRangeMin = 0, i_ySizeMax = 40000;
     int numberOfTests = 10;
 
     private static Physics physicsTestingObject;
