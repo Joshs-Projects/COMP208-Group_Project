@@ -11,15 +11,17 @@ public class EntityPhysics extends Movement {
     //THIS EXCLUDES ATTRIBUTES THAT WERE INHERITED AS THEY SHOULD HAVE PRE-EXISTING SETTERS AND GETTERS
     private boolean movable;
 
-
-
-    //default Construtor
     public EntityPhysics() {
     }
 
-    //2nd construtor
     public  EntityPhysics(double mass){
         this.mass = mass;
+        //Add setting of:
+        //Size
+        //Position
+        //Velocity
     }
+
+    //Need a setter and getter for movable
 
 }

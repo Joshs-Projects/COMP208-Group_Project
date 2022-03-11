@@ -5,5 +5,5 @@ public class Floor {
         //rateOfSlowDown
         //passableWhenMovingUp
         //passableWhenMovingDown
-    //Constructor needed
+    //Constructor needed that takes in nothing and that takes in values for the above attributes.
 }
