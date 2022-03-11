@@ -60,9 +60,25 @@ public class Renderer {
     }
 
     public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjcetW,String path){
-        JLabel label = new JLabel(new ImageIcon(path));
-        label.setBounds(40,80,200,200);
+        /* if the actual height of the image > the actual width, and the user scales the image with a greater
+        width (Image.SCALE_SMOOTH) will rotate to prevent distortion. Could prevent the user from doing this entirely
+        or make sure the width/height is always the correct way around even if incorrectly specified by the user.
+
+        Have the user decide what level of intensity they want the image to use up the cpu
+        by typing an integer, this will correspond with a different use of (Image.(different types of scaling))
+        */
+        ImageIcon imageIcon = new ImageIcon (path);
+        Image image = imageIcon.getImage();
+        Image scaledImage = image.getScaledInstance(400, 250, Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(scaledImage);
+
+        JLabel label = new JLabel(imageIcon);
+
+        //label.setBounds(40,80,200,200);
+        //label.setLocation(40, 40);
         frame.add(label);
+        //frame.setSize(480, 480);
+        frame.setVisible(true);
     }
 }
 
