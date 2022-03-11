@@ -14,6 +14,7 @@ public class Renderer {
     private int objectY;
     private int objectH;
     private int objectW;
+    private String path;
 
     private String windowTitle;
 
@@ -35,13 +36,12 @@ public class Renderer {
         frame = new JFrame(windowTitle);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(xResolution, yResolution);
-        frame.setLayout(null);
+        frame.setLayout(new BorderLayout());
         frame.setVisible(true);
 
         return frame;
 
     }
-
 
     public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjcetW){
         JPanel panel = new JPanel();
@@ -59,6 +59,11 @@ public class Renderer {
         frame.add(panel);
     }
 
+    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjcetW,String path){
+        JLabel label = new JLabel(new ImageIcon(path));
+        label.setBounds(40,80,200,200);
+        frame.add(label);
+    }
 }
 
     //THIS IS TO TRY TO DRAW A THING ON SCREEN

@@ -12,7 +12,9 @@ public class RendererTester {
 
         display.drawWindow();
 
-        display.DrawObject(20,20,40,40, Color.red);
+        //display.DrawObject(20,20,40,40,Color.cyan);
+
+        display.DrawObject(20,20,40,40,"C:\\Users\\Ethan\\OneDrive\\Documents\\stingRay.jpg");
 
         return;
     }
