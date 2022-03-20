@@ -14,7 +14,7 @@ public class RendererTester {
 
         //display.DrawObject(20,20,40,40,Color.cyan);
 
-        display.DrawObject(20,20,40,40,"C:\\Users\\Ethan\\OneDrive\\Documents\\stingRay.jpg");
+        display.DrawObject(20,20,40,40,"C:\\Users\\Josh\\IdeaProjects\\COMP208-Group_Project\\src\\Engine\\Rendering\\stingRay.jpg");
 
         return;
     }

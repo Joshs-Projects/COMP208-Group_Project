@@ -6,11 +6,50 @@ public class Movement extends Physics{
     protected double xVelocity;
     protected double yVelocity;
 
-
     protected double xAcceleration;
     protected double yAcceleration;
 
     protected double mass;
+
+    public double getxVelocity() {
+        return xVelocity;
+    }
+
+    public void setxVelocity(double xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public double getyVelocity() {
+        return yVelocity;
+    }
+
+    public void setyVelocity(double yVelocity) {
+        this.yVelocity = yVelocity;
+    }
+
+    public double getxAcceleration() {
+        return xAcceleration;
+    }
+
+    public void setxAcceleration(double xAcceleration) {
+        this.xAcceleration = xAcceleration;
+    }
+
+    public double getyAcceleration() {
+        return yAcceleration;
+    }
+
+    public void setyAcceleration(double yAcceleration) {
+        this.yAcceleration = yAcceleration;
+    }
+
+    public double getMass() {
+        return mass;
+    }
+
+    public void setMass(double mass) {
+        this.mass = mass;
+    }
 
     protected void CalculateXVelocity() {
         xVelocity = xVelocity + (xAcceleration * timePerTick);
@@ -52,6 +91,18 @@ public class Movement extends Physics{
         ArrayList<Movement> allCollisionsWithThis = new ArrayList<>();
 
         return allCollisionsWithThis;
+    }
+
+    public Movement(){
+
+    }
+
+    public Movement(double xVelocity, double yVelocity, double xAcceleration, double yAcceleration, double mass){
+        this.xVelocity = xVelocity;
+        this.yVelocity = yVelocity;
+        this.xAcceleration = xAcceleration;
+        this.yAcceleration = yAcceleration;
+        this.mass = mass;
     }
 
 }

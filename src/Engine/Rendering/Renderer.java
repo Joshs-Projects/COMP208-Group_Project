@@ -43,7 +43,7 @@ public class Renderer {
 
     }
 
-    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjcetW){
+    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjectW){
         JPanel panel = new JPanel();
         panel.setBounds(40,80,200,200);
         //default colour
@@ -52,14 +52,14 @@ public class Renderer {
     }
 
     //With optional parameter of color
-    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjcetW, Color color){
+    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjectW, Color color){
         JPanel panel = new JPanel();
         panel.setBounds(40,80,200,200);
         panel.setBackground(color);
         frame.add(panel);
     }
 
-    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjcetW,String path){
+    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjectW,String path){
         /* if the actual height of the image > the actual width, and the user scales the image with a greater
         width (Image.SCALE_SMOOTH) will rotate to prevent distortion. Could prevent the user from doing this entirely
         or make sure the width/height is always the correct way around even if incorrectly specified by the user.
