@@ -1,9 +1,9 @@
 package Engine.Physics;
 
 public class Floor {
-    //Attributes:
-        //rateOfSlowDown
-        //passableWhenMovingUp
-        //passableWhenMovingDown
+    //Private Attributes:
+        //double rateOfSlowDown
+        //boolean passableWhenMovingUp
+        //boolean passableWhenMovingDown
     //Constructor needed that takes in nothing and that takes in values for the above attributes.
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class CollisionHandler {
     //This is to keep track of which objects can collide.
     //The benefit of doing it this way is that you can have multiple planes/depths
+    //The benefit of doing it this way is that you can have multiple planes/depths
     //As only the physics objects in a particular instance of this class can collide with one another.
     private ArrayList<Movement> allPhysicsObjects = new ArrayList<>();
 
@@ -26,12 +27,23 @@ public class CollisionHandler {
         floors.remove(removalFloor);
     }
 
+    public void setHitBoxShape(){
+        //Use this to set what shape the hitbox will have. Using this and the general equations for that hitbox.
+        //Circle being x^2 + y^2 = r^2
+        //Triangle being if the coords are within 3 lines.
+        //Rectangle being if between 2 horizontal and 2 vertical lines
+            //As an extra allow the rectangle to be rotated.
+    }
+
     public void findCollisions(){
         //Check the allPhysicsObjects for any collisions
         //Could try to find a collision detection algorithm or could make one up.
         //If making one up you could use the xPos and the yPos + the xSize and the ySize to 'draw' a rectangle hitbox
         //Then check if any of the other objects boxes are within this box.
         //To save compute time you could keep this information saved either in the class or
+
+        //Or could split screen up into individual parts and keep track of where an entity is on this grid.
+        //This way you don't need to check for the
 
         /*
         If I have a class "A" and I want to use another class "Compute" to compute something over "A"

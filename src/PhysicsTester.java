@@ -11,13 +11,13 @@ public class PhysicsTester {
     private double mass;
 
     private void PrintAllPropertiesOfClassPhysics(CharacterPhysics testPhysics){
-        System.out.println("Position X: " + testPhysics.getPositionX());
-        System.out.println("Position Y: " + testPhysics.getPositionY());
-        System.out.println("Velocity X: " + testPhysics.getCurrentXVelocity());
-        System.out.println("Velocity Y: " + testPhysics.getCurrentYVelocity());
-        System.out.println("Acceleration X: " + testPhysics.getCurrentXAcceleration());
-        System.out.println("Acceleration Y: " + testPhysics.getCurrentYAcceleration());
-        System.out.println("Mass: " + testPhysics.getCurrentMass());
+        System.out.println("Position X: " + testPhysics.getxPos());
+        System.out.println("Position Y: " + testPhysics.getyPos());
+        System.out.println("Velocity X: " + testPhysics.getxVelocity());
+        System.out.println("Velocity Y: " + testPhysics.getyVelocity());
+        System.out.println("Acceleration X: " + testPhysics.getxAcceleration());
+        System.out.println("Acceleration Y: " + testPhysics.getyAcceleration());
+        System.out.println("Mass: " + testPhysics.getMass());
 
         System.out.println("---------------------------------------------------------");
     }
