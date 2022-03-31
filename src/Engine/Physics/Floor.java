@@ -11,4 +11,7 @@ public class Floor {
     public Floor() {
 
     }
+    public Floor(double rateOfSlowDown, boolean passableWhenMovingUp, boolean passableWhenMovingDown){
+
+    }
 }
