@@ -70,7 +70,7 @@ public class Movement extends Physics{
 
     protected void CalculateDistance() {
         xPos = xPos + CalculateXDistance();
-        CalculateYDistance();
+        //CalculateYDistance();
         yPos = yPos + CalculateYDistance();
     }
 
