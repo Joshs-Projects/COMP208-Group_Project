@@ -2,6 +2,13 @@ package Engine.Physics;
 
 import java.util.ArrayList;
 
+//The shapes the hitbox may have
+enum Shapes {
+    Rectangle,
+    Triangle,
+    Circle
+}
+
 public class Movement extends Physics{
     protected double xVelocity;
     protected double yVelocity;
@@ -10,6 +17,12 @@ public class Movement extends Physics{
     protected double yAcceleration;
 
     protected double mass;
+
+    private Shapes shape;
+
+    private double radius;
+
+    private ArrayList<ArrayList<Integer>> triangleCollisionInfo;
 
     public double getxVelocity() {
         return xVelocity;
@@ -72,6 +85,30 @@ public class Movement extends Physics{
         xPos = xPos + CalculateXDistance();
         //CalculateYDistance();
         yPos = yPos + CalculateYDistance();
+    }
+
+    //x is the position horizontally
+    //y is the position vertically
+    //r is the radius of the circle
+    public void setHitBoxCircle(int radius){
+        this.shape = Shapes.Circle;
+        this.radius = radius;
+    }
+
+    public void setHitBoxRectangle(){
+        this.shape = Shapes.Rectangle;
+    }
+
+    public void setHitBoxTriangle(ArrayList<Integer> line1, ArrayList<Integer> line2, ArrayList<Integer> line3){
+        this.shape = Shapes.Triangle;
+        triangleCollisionInfo.add(line1);
+        triangleCollisionInfo.add(line2);
+        triangleCollisionInfo.add(line3);
+
+    }
+
+    public Shapes getHitBoxShape(){
+        return this.shape;
     }
 
     //Used when only one collision
