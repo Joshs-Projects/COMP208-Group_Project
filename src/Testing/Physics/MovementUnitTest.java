@@ -24,7 +24,7 @@ class MovementTest {
     int numberOfTests = 10;
     double velocityMin = -10000, velocityMax = 10000;
     double accelerationMin = -10000, accelerationMax = 10000;
-    double massMin = 0, massMax = 10000;
+    double massMin = 0, massMax = 10000; //-ve mass for opposing gravity?
 
 
     @BeforeAll

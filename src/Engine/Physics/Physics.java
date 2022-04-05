@@ -101,6 +101,11 @@ public class Physics {
         this.xSize = xSize;
     }
 
+    /**
+     * Gets the ySize attribute
+     *
+     * @return double of ySize
+     */
     public double getySize() {
         return ySize;
     }
@@ -114,15 +119,21 @@ public class Physics {
         this.ySize = ySize;
     }
 
+    /**
+     * A blank constructor
+     */
     public Physics(){
 
     }
 
+    /**
+     * A constructor that sets the gravity and timePerTick for the object.
+     *
+     * @param gravity A double representing the strength of gravity acting on that object.
+     * @param timePerTick An int to represent how much time has passed between updates.
+     */
     public Physics(double gravity, int timePerTick){
         this.gravity = gravity;
         this.timePerTick = timePerTick;
     }
-
-    //Create a setter and getter for xSize and ySize as well as move the xPos and yPos setter and getter from CharacterPhysics
-
 }
