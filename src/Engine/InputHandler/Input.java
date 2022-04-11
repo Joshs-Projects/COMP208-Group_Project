@@ -6,24 +6,28 @@ import java.util.ArrayList;
 
 public class Input implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
-    private final int keyAmount = 256;
-    private ArrayList<Integer> keysPressed = new ArrayList<Integer>();
-    private ArrayList<Integer> keysDown = new ArrayList<Integer>();
 
-    private int mouseX, mouseY;
+    private final int KEY_AMOUNT = 256; //256 represents the keycodes for keyboard input.
+    private boolean[] allKeys = new boolean[KEY_AMOUNT];  //keys during current frame
+    private boolean[] keysLast = new boolean[KEY_AMOUNT]; //Keys from last frame.
+
+    private int mouseX, mouseY; //Mouse coordinate variables
     private int scroll;
 
-    public void keyReleased(KeyEvent event) {
-        int key = event.getKeyCode();
-    }
+    private final int MOUSE_BUTTONS = 5;//Left click, right click, middle click, scroll press and so on.
+    private boolean mouseInput[] = new boolean[MOUSE_BUTTONS]; //array to keep track of mouse clicks.
 
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
-    public void keyPressed(KeyEvent event) {
-        int key = event.getKeyCode();
+    public void keyPressed(KeyEvent e){
+        allKeys[e.getKeyCode()] = true; //This tells the user that the key is being pressed
+
+    }
+    public void keyReleased(KeyEvent e) {
+        allKeys[e.getKeyCode()] = false; //This tells the user that the key is not being pressed
     }
 
     @Override
