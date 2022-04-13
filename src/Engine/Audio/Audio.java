@@ -24,7 +24,21 @@ public class Audio {
             SourceDataLine lineOut = AudioSystem.getSourceDataLine(outputFormat);
             int buffSize = 4096;
             lineOut.open(outputFormat, buffSize);
+            // CHANGES VOLUME
+            // System.out.println(lineOut.isControlSupported(FloatControl.Type.MASTER_GAIN));
+            double volume = 10.0f;
+            FloatControl volControl = (FloatControl) lineOut.getControl(FloatControl.Type.MASTER_GAIN);
+            // maps volume range from decibels (logarithmic) to between 0 and 10
+            volControl.setValue((float) (6.0206 * Math.log10(volume)));
+            // CHANGES PAN
+            // System.out.println(lineOut.isControlSupported(FloatControl.Type.PAN));
+            FloatControl panControl = (FloatControl) lineOut.getControl(FloatControl.Type.PAN);
+            panControl.setValue(-1.0f);
             lineOut.start();
+            // MUTE
+            // System.out.println(lineOut.isControlSupported(BooleanControl.Type.MUTE));
+            BooleanControl muteControl = (BooleanControl) lineOut.getControl(BooleanControl.Type.MUTE);
+            muteControl.setValue(false);
             // writes audio data to lineOut, sample by sample
             byte[] buffer = new byte[buffSize];
             for (int i = 0; i != -1; i = lineIn.read(buffer, 0, buffSize)) {
@@ -32,7 +46,7 @@ public class Audio {
             }
             // System.out.println("working?");
             // closes output line
-            lineOut.drain();
+            //lineOut.drain();
             lineOut.stop();
             lineOut.close();
         }
