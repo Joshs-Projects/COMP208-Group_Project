@@ -8,20 +8,58 @@ import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 // throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException
 
 public class Audio {
+
     //Add private attributes for
-        //Volume
-        //panControl
-        //mute
-        //etc.
+    private String filePath;
+    private double volume;
+    private float panAmount;
+    private boolean mute;
+    private boolean isPlaying;
 
-    //Add ability to set and get the private attibutes
+    //Add ability to set and get the private attributes
 
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
+    public float getPanAmount() {
+        return panAmount;
+    }
+
+    public void setPanAmount(float panAmount) {
+        this.panAmount = panAmount;
+    }
+
+    public boolean isMute() {
+        return mute;
+    }
+
+    public void setMute(boolean mute) {
+        this.mute = mute;
+    }
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
 
     public static void main(String[] args) {
         // Instantiates itself
-        Audio audio = new Audio();
+        // Audio audio = new Audio();
         File file = new File("src/Engine/Audio/ThinkBreak.wav"); // just an arbitrary sample for now
-        audio.playAudio(file);
+        // audio.playAudio(file);
     }
 
     public void playAudio(File file) {
@@ -35,7 +73,6 @@ public class Audio {
             lineOut.open(outputFormat, buffSize);
             // CHANGES VOLUME
             // System.out.println(lineOut.isControlSupported(FloatControl.Type.MASTER_GAIN));
-            double volume = 10.0f;
             FloatControl volControl = (FloatControl) lineOut.getControl(FloatControl.Type.MASTER_GAIN);
             // maps volume range from decibels (logarithmic) to between 0 and 10
             volControl.setValue((float) (6.0206 * Math.log10(volume)));
@@ -44,6 +81,7 @@ public class Audio {
             FloatControl panControl = (FloatControl) lineOut.getControl(FloatControl.Type.PAN);
             panControl.setValue(-1.0f);
             lineOut.start();
+            isPlaying = true;
             // MUTE
             // System.out.println(lineOut.isControlSupported(BooleanControl.Type.MUTE));
             BooleanControl muteControl = (BooleanControl) lineOut.getControl(BooleanControl.Type.MUTE);
@@ -55,8 +93,9 @@ public class Audio {
             }
             // System.out.println("working?");
             // closes output line
-            //lineOut.drain();
+            lineOut.drain();
             lineOut.stop();
+            isPlaying = false;
             lineOut.close();
         }
         catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
@@ -78,10 +117,15 @@ public class Audio {
     }
 
     //Default constructor
-    public Audio() {
-
+    public Audio(String filePath) {
+        this.volume = 10.0;
+        this.panAmount = 0.0f;
+        this.mute = false;
     }
 
+    public Audio(String filePath, double volume, float panAmount, boolean mute) {
+
+    }
     //Make constructors the same way with parameters you want to set
     //Inside the constructor change the private parameters using this."nameOfAttribute" = newParameterValue
 }
