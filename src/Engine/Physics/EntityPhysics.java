@@ -1,25 +1,54 @@
 package Engine.Physics;
 
 public class EntityPhysics extends Movement {
-    //Create a bool for is the entity movable.
-    //Create a constructor that takes in: (Most of this can be found in the CharacterPhysics)
-        //Size
-        //Position
-        //Velocity
-        //Mass
-    //Make setters and getters for all relevant attributes.
-    //THIS EXCLUDES ATTRIBUTES THAT WERE INHERITED AS THEY SHOULD HAVE PRE-EXISTING SETTERS AND GETTERS
-    private boolean movable;
+    private boolean isMovable;
 
     public EntityPhysics() {
     }
 
-    public  EntityPhysics(double mass){
+    public EntityPhysics(double mass, double xPos, double yPos, double xSize, double ySize, boolean isMoveable){
         this.mass = mass;
-        //Add setting of:
-        //Size
-        //Position
-        //Velocity
+
+        this.xPos = xPos;
+        this.yPos = yPos;
+
+        this.xSize = xSize;
+        this.ySize = ySize;
+
+        this.isMovable = isMoveable;
+    }
+
+    public EntityPhysics(double mass, double xPos, double yPos, double xSize, double ySize, double xVelocity, double yVelocity, boolean isMoveable){
+        this.mass = mass;
+
+        this.xPos = xPos;
+        this.yPos = yPos;
+
+        this.xSize = xSize;
+        this.ySize = ySize;
+
+        this.xVelocity = xVelocity;
+        this.yVelocity = yVelocity;
+
+        this.isMovable = isMoveable;
+    }
+
+    public EntityPhysics(double mass, double xPos, double yPos, double xSize, double ySize, double xVelocity, double yVelocity, double xAcceleration, double yAcceleration, boolean isMoveable){
+        this.mass = mass;
+
+        this.xPos = xPos;
+        this.yPos = yPos;
+
+        this.xSize = xSize;
+        this.ySize = ySize;
+
+        this.xVelocity = xVelocity;
+        this.yVelocity = yVelocity;
+
+        this.xAcceleration = xAcceleration;
+        this.yAcceleration = yAcceleration;
+
+        this.isMovable = isMoveable;
     }
 
     //Need a setter and getter for movable

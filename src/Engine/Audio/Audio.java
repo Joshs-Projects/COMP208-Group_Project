@@ -8,6 +8,15 @@ import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 // throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException
 
 public class Audio {
+    //Add private attributes for
+        //Volume
+        //panControl
+        //mute
+        //etc.
+
+    //Add ability to set and get the private attibutes
+
+
     public static void main(String[] args) {
         // Instantiates itself
         Audio audio = new Audio();
