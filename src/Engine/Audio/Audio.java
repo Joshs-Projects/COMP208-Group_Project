@@ -76,4 +76,12 @@ public class Audio {
                 false
         );
     }
+
+    //Default constructor
+    public Audio() {
+
+    }
+
+    //Make constructors the same way with parameters you want to set
+    //Inside the constructor change the private parameters using this."nameOfAttribute" = newParameterValue
 }
