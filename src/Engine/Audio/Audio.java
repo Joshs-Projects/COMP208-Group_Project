@@ -11,6 +11,7 @@ public class Audio {
 
     //Add private attributes for
     private String filePath;
+    private File file;
     private double volume;
     private float panAmount;
     private boolean mute;
@@ -79,13 +80,13 @@ public class Audio {
             // CHANGES PAN
             // System.out.println(lineOut.isControlSupported(FloatControl.Type.PAN));
             FloatControl panControl = (FloatControl) lineOut.getControl(FloatControl.Type.PAN);
-            panControl.setValue(-1.0f);
+            panControl.setValue(panAmount);
             lineOut.start();
             isPlaying = true;
             // MUTE
             // System.out.println(lineOut.isControlSupported(BooleanControl.Type.MUTE));
             BooleanControl muteControl = (BooleanControl) lineOut.getControl(BooleanControl.Type.MUTE);
-            muteControl.setValue(false);
+            muteControl.setValue(mute);
             // writes audio data to lineOut, sample by sample
             byte[] buffer = new byte[buffSize];
             for (int i = 0; i != -1; i = lineIn.read(buffer, 0, buffSize)) {
@@ -118,6 +119,7 @@ public class Audio {
 
     //Default constructor
     public Audio(String filePath) {
+        File file = new File(filePath);
         this.volume = 10.0;
         this.panAmount = 0.0f;
         this.mute = false;
