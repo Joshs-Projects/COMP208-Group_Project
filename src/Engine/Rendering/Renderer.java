@@ -1,30 +1,15 @@
 package Engine.Rendering;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
-import java.util.ArrayList;
-
 
 public class Renderer {
-    private int xResolution;
-    private int yResolution;
+    private final int xResolution;
+    private final int yResolution;
+    private final String windowTitle;
 
-    private String color;
-    private int objectX;
-    private int objectY;
-    private int objectH;
-    private int objectW;
-    private String path;
-
-    private String windowTitle;
-
-    //Object gameObject;
-    //overall frame
     private JFrame frame;
-
-    //THINGS TO DRAW. MAYBE NEEDED MAYBE NOT.
-    //list of assests
-    ArrayList<Assets> ItemsToRender = new ArrayList<Assets>();
 
     public Renderer(int xResolution, int yResolution, String windowTitle) {
         this.xResolution = xResolution;
@@ -32,70 +17,142 @@ public class Renderer {
         this.windowTitle = windowTitle;
     }
 
-    public JFrame drawWindow() {
+    public void Window() {
+
         frame = new JFrame(windowTitle);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(xResolution, yResolution);
-        frame.setLayout(new BorderLayout());
-        frame.setVisible(true);
-
-        return frame;
-
+        //layout set as null so labels can be positioned with specific x and y coordinates
+        frame.setLayout(null);
     }
 
-    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjectW){
-        JPanel panel = new JPanel();
-        panel.setBounds(40,80,200,200);
-        //default colour
-        panel.setBackground(Color.black);
-        frame.add(panel);
-    }
+    // default method with all the required parameters needed to add an image
 
-    //With optional parameter of color
-    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjectW, Color color){
-        JPanel panel = new JPanel();
-        panel.setBounds(40,80,200,200);
-        panel.setBackground(color);
-        frame.add(panel);
-    }
+    public void addImage(String imageName,int xPosition, int yPosition, int width, int height){
 
-    public void DrawObject(int ObjectX,int ObjectY,int ObjectH,int ObjectW,String path){
-        /* if the actual height of the image > the actual width, and the user scales the image with a greater
-        width (Image.SCALE_SMOOTH) will rotate to prevent distortion. Could prevent the user from doing this entirely
-        or make sure the width/height is always the correct way around even if incorrectly specified by the user.
+        ImageIcon image = new ImageIcon(imageName);
 
-        Have the user decide what level of intensity they want the image to use up the cpu
-        by typing an integer, this will correspond with a different use of (Image.(different types of scaling))
-        */
-        ImageIcon imageIcon = new ImageIcon (path);
-        Image image = imageIcon.getImage();
-        Image scaledImage = image.getScaledInstance(400, 250, Image.SCALE_SMOOTH);
-        imageIcon = new ImageIcon(scaledImage);
+        JLabel label = new JLabel();
 
-        JLabel label = new JLabel(imageIcon);
+        label.setBounds(xPosition,yPosition,width,height);
+        label.setIcon(image);
 
-        //label.setBounds(40,80,200,200);
-        //label.setLocation(40, 40);
         frame.add(label);
-        //frame.setSize(480, 480);
         frame.setVisible(true);
+
+
     }
+
+    // Optional parameters to add a hit box
+
+    public void addImage(String imageName,int xPosition, int yPosition, int width, int height, Color hitColour, int hitThickness){
+
+        ImageIcon image = new ImageIcon(imageName);
+
+        Border border = BorderFactory.createLineBorder(hitColour,hitThickness);
+
+        JLabel label = new JLabel();
+
+        label.setBounds(xPosition,yPosition,width,height);
+        label.setIcon(image);
+        label.setBorder(border);
+
+        frame.add(label);
+        frame.setVisible(true);
+
+    }
+
+    public void addButton(int xPosition, int yPosition, int width, int height){
+
+        JButton button = new JButton();
+        button.setBounds(xPosition,yPosition,width,height);
+        button.addActionListener(e -> System.out.println("Pressed !"));
+
+        frame.add(button);
+        frame.setVisible(true);
+
+    }
+
+    // default custom button
+
+    public void addCustomButton(int xPosition, int yPosition, int width, int height, String imageName){
+
+        ImageIcon image = new ImageIcon(imageName);
+
+        JButton button = new JButton();
+        button.setBounds(xPosition,yPosition,width,height);
+        button.addActionListener(e -> System.out.println("Pressed !"));
+        button.setIcon(image);
+        //removes the small border around the image, visible if the button is bigger than the image
+        button.setFocusPainted(false);
+
+        frame.add(button);
+        frame.setVisible(true);
+
+    }
+
+    // customised button with an image and text
+
+    public void addCustomButton(int xPosition, int yPosition, int width, int height, String imageName, String buttonText){
+
+        ImageIcon image = new ImageIcon(imageName);
+
+        JButton button = new JButton();
+        button.setBounds(xPosition,yPosition,width,height);
+        button.addActionListener(a -> System.out.println("Pressed !"));
+        frame.setVisible(true);
+        button.setIcon(image);
+        button.setFocusPainted(false);
+        button.setText(buttonText);
+        // center the text otherwise a big image could push it off the size of the button
+        button.setHorizontalTextPosition(0);
+        button.setVerticalTextPosition(0);
+
+        Font font = new Font("SansSerif", Font.BOLD, 20);
+        button.setFont(font);
+
+        frame.add(button);
+        frame.setVisible(true);
+
+    }
+
+    public void pauseMenu(){
+
+        // remove all other objects from the frame while paused
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+        //layout set as a grid to center the middle button
+        frame.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        JButton Resume = new JButton("Resume");
+        JButton Options = new JButton("Options");
+        JButton Exit = new JButton("Exit");
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        Resume.setPreferredSize(new Dimension(100, 100));
+        Resume.addActionListener(r -> System.out.println("Resume"));
+        frame.add(Resume,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        Options.setPreferredSize(new Dimension(100, 100));
+        Options.addActionListener(o -> System.out.println("Options"));
+        frame.add(Options,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        Exit.setPreferredSize(new Dimension(100, 100));
+        Exit.addActionListener(e -> System.out.println("Exit"));
+        frame.add(Exit,gbc);
+
+        frame.setVisible(true);
+
+    }
+
+
+
+
 }
-
-    //THIS IS TO TRY TO DRAW A THING ON SCREEN
-    /*
-    public void DrawAssets(Graphics g){
-        g.drawImage(ItemsToRender.get(0).getImage(), 32, 32, frame);
-        g.fillRect(50, 50, 1000, 100);
-    }
-    */
-    /*
-    public void AddThingToRender(Assets newThing) throws RuntimeException {
-        ItemsToRender.add(newThing);
-
-        DrawAssets(frame.getGraphics());
-
-    }
-    */
-
-    //THIS IS THE END OF TRYING TO DRAW STUFF ON SCREEN

@@ -22,6 +22,7 @@ public class Movement extends Physics{
 
     private double radius;
 
+    //An array that contains 3 other arrays with each array providing information about a line
     private ArrayList<ArrayList<Integer>> triangleCollisionInfo;
 
     public double getxVelocity() {
@@ -109,6 +110,28 @@ public class Movement extends Physics{
 
     public Shapes getHitBoxShape(){
         return this.shape;
+    }
+
+    public ArrayList<ArrayList<Double>> getRangeOfCoordinatesForCollision(){
+        //First ArrayList is for coordinates greaterThan or equal to
+        //Second ArrayList if for coordinates greaterThan
+        //Third ArrayList is for coordinates lessThan or equal to
+        //Fourth ArrayList if for coordinates lessThan
+        ArrayList<ArrayList<Double>> collisionCoordinates = new ArrayList<>(4);
+
+        if (this.shape == Shapes.Rectangle){
+            ArrayList<Double> greaterThanEqualTo = new ArrayList<>();
+            greaterThanEqualTo.add(this.xPos);
+            greaterThanEqualTo.add(this.yPos);
+            ArrayList<Double> lessThanEqualTo = new ArrayList<>();
+            lessThanEqualTo.add(this.xPos+this.xSize);
+            lessThanEqualTo.add(this.yPos+this.ySize);
+            collisionCoordinates.set(0, greaterThanEqualTo);
+            collisionCoordinates.set(2, lessThanEqualTo);
+        }
+
+        return collisionCoordinates;
+
     }
 
     //Used when only one collision
