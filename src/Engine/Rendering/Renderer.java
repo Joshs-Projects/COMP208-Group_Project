@@ -3,6 +3,7 @@ package Engine.Rendering;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Renderer {
     private final int xResolution;
@@ -121,37 +122,78 @@ public class Renderer {
         // remove all other objects from the frame while paused
         frame.getContentPane().removeAll();
         frame.repaint();
+        frame.getContentPane().setBackground(Color.decode("#e6e6e6"));
 
         //layout set as a grid to center the middle button
         frame.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        GridBagConstraints gridBag = new GridBagConstraints();
+        gridBag.fill = GridBagConstraints.HORIZONTAL;
+        gridBag.insets = new Insets(5,0,0,0);
+
+        Font font = new Font("SansSerif",Font.PLAIN,30);
 
         JButton Resume = new JButton("Resume");
         JButton Options = new JButton("Options");
         JButton Exit = new JButton("Exit");
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        Resume.setPreferredSize(new Dimension(100, 100));
+        gridBag.gridx = 0;
+        gridBag.gridy = 0;
+        Resume.setPreferredSize(new Dimension(230, 175));
+        Resume.setFocusPainted(false);
+        Resume.setBackground(Color.decode("#1473b8"));
+        Resume.setForeground(Color.decode("#000000"));
+        Resume.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        Resume.setFont(font);
         Resume.addActionListener(r -> System.out.println("Resume"));
-        frame.add(Resume,gbc);
+        Resume.addActionListener(r -> frame.getContentPane().removeAll());
+        Resume.addActionListener(r -> frame.repaint());
+        Resume.addActionListener(r -> frame.getContentPane().setBackground(Color.decode("#ffffff")));
+        frame.add(Resume,gridBag);
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        Options.setPreferredSize(new Dimension(100, 100));
+        gridBag.gridx = 0;
+        gridBag.gridy = 1;
+        Options.setPreferredSize(new Dimension(230, 175));
+        Options.setFocusPainted(false);
+        Options.setBackground(Color.decode("#1473b8"));
+        Options.setForeground(Color.decode("#000000"));
+        Options.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        Options.setFont(font);
         Options.addActionListener(o -> System.out.println("Options"));
-        frame.add(Options,gbc);
+        frame.add(Options,gridBag);
 
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        Exit.setPreferredSize(new Dimension(100, 100));
-        Exit.addActionListener(e -> System.out.println("Exit"));
-        frame.add(Exit,gbc);
+        gridBag.gridx = 0;
+        gridBag.gridy = 2;
+        Exit.setPreferredSize(new Dimension(230, 175));
+        Exit.setFocusPainted(false);
+        Exit.setBackground(Color.decode("#1473b8"));
+        Exit.setForeground(Color.decode("#000000"));
+        Exit.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        Exit.addActionListener(e -> frame.dispose());
+        Exit.setFont(font);
+        frame.add(Exit,gridBag);
 
         frame.setVisible(true);
 
     }
 
+    public void clearScreen(){
+        frame.getContentPane().removeAll();
+        frame.repaint();
+    }
+
+    public void addText(){
+
+        Border border = BorderFactory.createLineBorder(Color.GREEN);
+
+        JLabel label = new JLabel();
+        label.setText("Blaise");
+        label.setBounds(100, 100, 100, 100);
+        label.setBorder(border);
+
+        frame.setVisible(true);
+        frame.add(label);
+
+    }
 
 
 
