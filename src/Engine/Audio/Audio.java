@@ -16,6 +16,15 @@ public class Audio {
     private float panAmount;
     private boolean mute;
     private boolean isPlaying;
+    private int buffSize = 4096;
+
+
+    private AudioInputStream lineIn;
+    private AudioFormat outputFormat;
+    private SourceDataLine lineOut;
+    private FloatControl volControl;
+    private FloatControl panControl;
+    private BooleanControl muteControl;
 
     //Add ability to set and get the private attributes
 
@@ -34,6 +43,7 @@ public class Audio {
 
     public void setVolume(double volume) {
         this.volume = volume;
+        this.volControl.setValue((float) (6.0206 * Math.log10(this.volume)));
     }
 
     public float getPanAmount() {
@@ -42,6 +52,7 @@ public class Audio {
 
     public void setPanAmount(float panAmount) {
         this.panAmount = panAmount;
+        this.panControl.setValue(panAmount);
     }
 
     public boolean isMute() {
@@ -50,6 +61,7 @@ public class Audio {
 
     public void setMute(boolean mute) {
         this.mute = mute;
+        this.muteControl.setValue(mute);
     }
 
     public boolean isPlaying() {
@@ -58,37 +70,24 @@ public class Audio {
 
     public static void main(String[] args) {
         // Instantiates itself
-        // Audio audio = new Audio();
-        File file = new File("src/Engine/Audio/ThinkBreak.wav"); // just an arbitrary sample for now
-        // audio.playAudio(file);
+        Audio audio = new Audio("src/Engine/Audio/ThinkBreak.wav");
+        //File file = new File("src/Engine/Audio/ThinkBreak.wav"); // just an arbitrary sample for now
+        audio.playAudio();
     }
 
-    public void playAudio(File file) {
+    public void playAudio() {
         try {
-            // takes the audio input in from the specified file
-            AudioInputStream lineIn = AudioSystem.getAudioInputStream(file);
-            AudioFormat outputFormat = getOutputFormat(lineIn.getFormat());
-            // allows for the writing of audio data
-            SourceDataLine lineOut = AudioSystem.getSourceDataLine(outputFormat);
-            int buffSize = 4096;
-            lineOut.open(outputFormat, buffSize);
             // CHANGES VOLUME
             // System.out.println(lineOut.isControlSupported(FloatControl.Type.MASTER_GAIN));
-            FloatControl volControl = (FloatControl) lineOut.getControl(FloatControl.Type.MASTER_GAIN);
             // maps volume range from decibels (logarithmic) to between 0 and 10
-            volControl.setValue((float) (6.0206 * Math.log10(volume)));
             // CHANGES PAN
             // System.out.println(lineOut.isControlSupported(FloatControl.Type.PAN));
-            FloatControl panControl = (FloatControl) lineOut.getControl(FloatControl.Type.PAN);
-            panControl.setValue(panAmount);
             lineOut.start();
             isPlaying = true;
             // MUTE
             // System.out.println(lineOut.isControlSupported(BooleanControl.Type.MUTE));
-            BooleanControl muteControl = (BooleanControl) lineOut.getControl(BooleanControl.Type.MUTE);
-            muteControl.setValue(mute);
             // writes audio data to lineOut, sample by sample
-            byte[] buffer = new byte[buffSize];
+            byte[] buffer = new byte[this.buffSize];
             for (int i = 0; i != -1; i = lineIn.read(buffer, 0, buffSize)) {
                 lineOut.write(buffer, 0, i);
             }
@@ -99,7 +98,7 @@ public class Audio {
             isPlaying = false;
             lineOut.close();
         }
-        catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+        catch ( IOException e) {
             e.printStackTrace();
         }
     }
@@ -117,12 +116,36 @@ public class Audio {
         );
     }
 
+    private void openLineOut(){
+        try {
+            this.lineOut.open(this.outputFormat, this.buffSize);
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Default constructor
     public Audio(String filePath) {
-        File file = new File(filePath);
         this.volume = 10.0;
         this.panAmount = 0.0f;
         this.mute = false;
+
+        this.file = new File(filePath);
+        try {
+            this.lineIn = AudioSystem.getAudioInputStream(file);
+            this.outputFormat = getOutputFormat(lineIn.getFormat());
+            this.lineOut = AudioSystem.getSourceDataLine(outputFormat);
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
+
+        openLineOut();
+
+        this.volControl = (FloatControl) this.lineOut.getControl(FloatControl.Type.MASTER_GAIN);
+        this.panControl = (FloatControl) this.lineOut.getControl(FloatControl.Type.PAN);
+        this.muteControl = (BooleanControl) this.lineOut.getControl(BooleanControl.Type.MUTE);
+
+
     }
 
     public Audio(String filePath, double volume, float panAmount, boolean mute) {

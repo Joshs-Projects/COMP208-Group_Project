@@ -13,7 +13,7 @@ public class Floor {
         this.rateOfSlowDown = rateOfSlowDown;
     }
 
-    public boolean isPassableWhenMovingUp() {
+    public boolean getPassableWhenMovingUp() {
         return passableWhenMovingUp;
     }
 
@@ -21,7 +21,7 @@ public class Floor {
         this.passableWhenMovingUp = passableWhenMovingUp;
     }
 
-    public boolean isPassableWhenMovingDown() {
+    public boolean getPassableWhenMovingDown() {
         return passableWhenMovingDown;
     }
 
@@ -32,6 +32,7 @@ public class Floor {
     public Floor() {
 
     }
+
     public Floor(double rateOfSlowDown, boolean passableWhenMovingUp, boolean passableWhenMovingDown){
         this.rateOfSlowDown = rateOfSlowDown;
         this.passableWhenMovingUp = passableWhenMovingUp;

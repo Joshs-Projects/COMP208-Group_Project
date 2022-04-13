@@ -3,6 +3,14 @@ package Engine.Physics;
 public class EntityPhysics extends Movement {
     private boolean isMovable;
 
+    public boolean getIsMovable() {
+        return isMovable;
+    }
+
+    public void setIsMovable(boolean movable) {
+        this.isMovable = movable;
+    }
+
     public EntityPhysics() {
     }
 
