@@ -8,10 +8,8 @@ public class RendererTester {
         Renderer display = new Renderer(1200, 720, "A New Game");
 
         display.Window();
-        display.addText();
-
+        display.addText("Blaise likes salmon",0, 0,40);
     }
-
     public static void main(String args[]){
         RendererTester test = new RendererTester();
     }

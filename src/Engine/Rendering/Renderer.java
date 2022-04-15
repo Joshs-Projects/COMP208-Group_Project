@@ -181,20 +181,58 @@ public class Renderer {
         frame.repaint();
     }
 
-    public void addText(){
+    // Deafault function for drawing text to a window
 
-        Border border = BorderFactory.createLineBorder(Color.GREEN);
+    public void addText(String text,int positionX,int positionY,int textSize){
+
+        Font font = new Font("SansSerif",Font.PLAIN,textSize);
+
+        int characterLength = text.length();
 
         JLabel label = new JLabel();
-        label.setText("Blaise");
-        label.setBounds(100, 100, 100, 100);
-        label.setBorder(border);
+        label.setText(text);
+        label.setBounds(positionX,positionY,(characterLength*(textSize/2)),textSize*2);
+        label.setFont(font);
 
         frame.setVisible(true);
         frame.add(label);
 
     }
 
+    public void addCustomText(String text,int textX,int textY,int textSize,String textFont,Color textColor){
 
+        Font font = new Font(textFont,Font.PLAIN,textSize);
+
+        int characterLength = text.length();
+
+        JLabel label = new JLabel();
+        label.setText(text);
+        label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
+        label.setForeground(textColor);
+        label.setFont(font);
+
+        frame.setVisible(true);
+        frame.add(label);
+
+    }
+
+    // Optional parameters to add the style of the font, 0 for plain, 1 for bold.
+
+    public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor){
+
+        Font font = new Font(textFont,textStyle,textSize);
+
+        int characterLength = text.length();
+
+        JLabel label = new JLabel();
+        label.setText(text);
+        label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
+        label.setForeground(textColor);
+        label.setFont(font);
+
+        frame.setVisible(true);
+        frame.add(label);
+
+    }
 
 }
