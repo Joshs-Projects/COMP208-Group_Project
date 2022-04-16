@@ -5,6 +5,7 @@ public class Floor {
     private boolean passableWhenMovingUp;
     private boolean passableWhenMovingDown;
 
+
     public double getRateOfSlowDown() {
         return rateOfSlowDown;
     }

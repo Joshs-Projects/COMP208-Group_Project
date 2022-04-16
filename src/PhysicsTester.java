@@ -1,4 +1,7 @@
-import Engine.Physics.CharacterPhysics;
+import Engine.Physics.*;
+import Engine.Rendering.*;
+
+import static java.lang.Thread.sleep;
 
 public class PhysicsTester {
 
@@ -59,8 +62,34 @@ public class PhysicsTester {
     }
 
     public static void main(String args[]) {
-        PhysicsTester test = new PhysicsTester();
-        test.PhysicsTester();
+        //PhysicsTester testPhysics = new PhysicsTester();
+        //testPhysics.PhysicsTester();
+
+        CharacterPhysics character = new CharacterPhysics();
+        character.setxPos(1000);
+        character.setyPos(1000);
+        character.setxSize(100);
+        character.setySize(100);
+        Renderer testRender = new Renderer(1200, 720, "Phyiscs Test");
+
+        testRender.Window();
+        testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+
+        /*for (int i = 0; i < 100; i++){
+
+            testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+            try {
+                sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            testRender.clearScreen();
+            character.Update();
+
+        }*/
+
+        testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+
 
     }
 }

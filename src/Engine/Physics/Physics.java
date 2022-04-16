@@ -52,8 +52,8 @@ public class Physics {
      *
      * @return double of xPos
      */
-    public double getxPos() {
-        return xPos;
+    public int getxPos() {
+        return (int) xPos;
     }
 
     /**
@@ -70,8 +70,8 @@ public class Physics {
      *
      * @return double of yPos
      */
-    public double getyPos() {
-        return yPos;
+    public int getyPos() {
+        return (int) yPos;
     }
 
     /**
@@ -88,8 +88,8 @@ public class Physics {
      *
      * @return double of xSize
      */
-    public double getxSize() {
-        return xSize;
+    public int getxSize() {
+        return (int) xSize;
     }
 
     /**
@@ -106,8 +106,8 @@ public class Physics {
      *
      * @return double of ySize
      */
-    public double getySize() {
-        return ySize;
+    public int getySize() {
+        return (int) ySize;
     }
 
     /**
