@@ -3,7 +3,6 @@ package Engine.Rendering;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Renderer {
     private final int xResolution;
@@ -40,7 +39,6 @@ public class Renderer {
 
         frame.add(label);
         frame.setVisible(true);
-
 
     }
 
@@ -199,6 +197,8 @@ public class Renderer {
 
     }
 
+    // Optional parameters to add the font and the colour of the text
+
     public void addCustomText(String text,int textX,int textY,int textSize,String textFont,Color textColor){
 
         Font font = new Font(textFont,Font.PLAIN,textSize);
@@ -226,6 +226,33 @@ public class Renderer {
 
         JLabel label = new JLabel();
         label.setText(text);
+        label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
+        label.setForeground(textColor);
+        label.setFont(font);
+
+        frame.setVisible(true);
+        frame.add(label);
+
+    }
+
+    // Optional parameter to reverse the letters in the text.
+
+    public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor, boolean reverse){
+
+        Font font = new Font(textFont,textStyle,textSize);
+
+        int characterLength = text.length();
+
+        JLabel label = new JLabel();
+
+        if (reverse){
+            String reverseText = new StringBuilder(text).reverse().toString();
+            label.setText(reverseText);
+        }
+        else{
+            label.setText(text);
+        }
+
         label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
         label.setForeground(textColor);
         label.setFont(font);
