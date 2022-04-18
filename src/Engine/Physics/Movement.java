@@ -13,6 +13,9 @@ public class Movement extends Physics{
     protected double xVelocity;
     protected double yVelocity;
 
+    protected double xTerminalVelocity;
+    protected double yTerminalVelocity;
+
     protected double xAcceleration;
     protected double yAcceleration;
 
@@ -65,12 +68,36 @@ public class Movement extends Physics{
         this.mass = mass;
     }
 
+    public double getXTerminalVelocity() {
+        return xTerminalVelocity;
+    }
+
+    public void setXTerminalVelocity(double xTerminalVelocity) {
+        this.xTerminalVelocity = xTerminalVelocity;
+    }
+
+    public double getYTerminalVelocity() {
+        return yTerminalVelocity;
+    }
+
+    public void setYTerminalVelocity(double yTerminalVelocity) {
+        this.yTerminalVelocity = yTerminalVelocity;
+    }
+
     protected void CalculateXVelocity() {
         xVelocity = xVelocity + (xAcceleration * timePerTick);
+        //Gives a terminal velocity to the object
+        if (xVelocity > xTerminalVelocity){
+            xVelocity = xTerminalVelocity;
+        }
     }
 
     protected void CalculateYVelocity() {
         yVelocity = yVelocity + ((yAcceleration + gravity) * timePerTick);
+        //Gives a terminal velocity to the object
+        if (yVelocity > yTerminalVelocity){
+            yVelocity = yTerminalVelocity;
+        }
     }
 
     //Calculate Distance moved
@@ -135,22 +162,13 @@ public class Movement extends Physics{
     }
 
     //Used when only one collision
-    public void Collision(Movement objectCollidedWith){
+    /*public void Collision(Movement objectCollidedWith){
         //Handle the collision with the single object
-    }
+    }*/
 
-    //Used when colliding with multiple objects
+    //Used when colliding with objects
     public void Collision(ArrayList<Movement> objectsCollidedWith){
-        //Handle the collision with multiple objects
-    }
-
-    //Required so the programmer can workout which objects are colliding
-    //Make sure to always give the floor collision first
-    //Return null if no collision with floor?
-    public ArrayList<Movement> GetCollisions(){
-        ArrayList<Movement> allCollisionsWithThis = new ArrayList<>();
-
-        return allCollisionsWithThis;
+        //Handle the collision with objects
     }
 
     public Movement(){

@@ -33,7 +33,7 @@ public class PhysicsTester {
         this.xInitialAcceleration = 0;
         this.yInitialAcceleration = 0;
         this.mass = 10;
-        CharacterPhysics testPhysics = new CharacterPhysics(mass, xInitialPosition, yInitialPosition, xInitialVelocity, yInitialVelocity, xInitialAcceleration, yInitialAcceleration);
+        CharacterPhysics testPhysics = new CharacterPhysics(mass, xInitialPosition, yInitialPosition, xInitialVelocity, yInitialVelocity, xInitialAcceleration, yInitialAcceleration, 0, 0);
         PrintAllPropertiesOfClassPhysics(testPhysics);
 
         testPhysics.PushInX(10);
@@ -66,29 +66,44 @@ public class PhysicsTester {
         //testPhysics.PhysicsTester();
 
         CharacterPhysics character = new CharacterPhysics();
-        character.setxPos(1000);
-        character.setyPos(1000);
+        CharacterPhysics character2 = new CharacterPhysics(10, 500, 100, -1, 0, 0, 0, 100, 100);
+
+        character.setxPos(200);
+        character.setyPos(100);
         character.setxSize(100);
         character.setySize(100);
-        Renderer testRender = new Renderer(1200, 720, "Phyiscs Test");
+        character.setxVelocity(1);
+        character.setyVelocity(0);
+        //character.setGravity(1);
+        character.setXTerminalVelocity(10);
+        character.setYTerminalVelocity(10);
+
+        CollisionHandler collisionDetection = new CollisionHandler();
+
+        Renderer testRender = new Renderer(1200, 720, "Physics Test");
 
         testRender.Window();
-        testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+        //testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
 
-        /*for (int i = 0; i < 100; i++){
+        for (int i = 0; i < 100; i++){
 
             testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+            testRender.addImage("TestAsset.png", character2.getxPos(), character2.getyPos(), character2.getxSize(), character2.getySize());
             try {
-                sleep(500);
+                sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             testRender.clearScreen();
             character.Update();
+            character2.Update();
 
-        }*/
+            collisionDetection.findCollisions();
+
+        }
 
         testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+        testRender.addImage("TestAsset.png", character2.getxPos(), character2.getyPos(), character2.getxSize(), character2.getySize());
 
 
     }

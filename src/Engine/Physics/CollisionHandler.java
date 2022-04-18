@@ -11,7 +11,7 @@ public class CollisionHandler {
 
     private ArrayList<Floor> floors = new ArrayList<>();
 
-    private ArrayList<ArrayList<Movement>> Collisions = new ArrayList<>();
+    //private ArrayList<ArrayList<Movement>> collisions = new ArrayList<>();
 
     public void addPhysicsObject(Movement newPhysicsObject){
         allPhysicsObjects.add(newPhysicsObject);
@@ -39,6 +39,7 @@ public class CollisionHandler {
     public void findCollisions(){
         //For every physics object against every other physics object
         for (int i = 0; i < allPhysicsObjects.size(); i++){
+            ArrayList<Movement> collisionsWithI = new ArrayList<>();
             for (int q = 1; q < allPhysicsObjects.size(); q++){
                 //if i and q are the same then ignore them as they are the same object
                 if (i != q){
@@ -47,11 +48,24 @@ public class CollisionHandler {
                     //Depending on the shapes it affects how to find collisions
                     if (iShape == qShape){
                         //Shapes are the same
+                        if (iShape == Shapes.Rectangle){
+                            if ((allPhysicsObjects.get(i).xPos > allPhysicsObjects.get(q).xPos) && (allPhysicsObjects.get(i).xPos + allPhysicsObjects.get(i).xSize < allPhysicsObjects.get(q).xPos)){
+                                //Collision in xCoord
+                                if ((allPhysicsObjects.get(i).yPos > allPhysicsObjects.get(q).yPos) && (allPhysicsObjects.get(i).xPos + allPhysicsObjects.get(i).xSize < allPhysicsObjects.get(q).yPos)){
+                                    //Collision in xCoord and yCoord between entity number i and entity number q
+                                    collisionsWithI.add(allPhysicsObjects.get(q));
+                                }
+                            }
+                        }
                     } else {
 
                     }
                 }
+
             }
+
+            allPhysicsObjects.get(i).Collision(collisionsWithI);
+
         }
 
         //If a collision with the floor set the y velocity to 0

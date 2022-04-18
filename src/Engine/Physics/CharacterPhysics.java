@@ -99,7 +99,7 @@ public class CharacterPhysics extends Movement {
      * @param xInitialAcceleration a double representing the initial x acceleration
      * @param yInitialAcceleration a double representing the initial y acceleration
      */
-    public CharacterPhysics(double mass, double xInitialPosition, double yInitialPosition, double xInitialVelocity, double yInitialVelocity, double xInitialAcceleration, double yInitialAcceleration){
+    public CharacterPhysics(double mass, double xInitialPosition, double yInitialPosition, double xInitialVelocity, double yInitialVelocity, double xInitialAcceleration, double yInitialAcceleration, double xSize, double ySize){
         this.mass = mass;
         this.xPos = xInitialPosition;
         this.yPos = yInitialPosition;
@@ -109,6 +109,8 @@ public class CharacterPhysics extends Movement {
         this.yAcceleration = yInitialAcceleration;
         this.slowingXToZero = false;
         this.slowingYToZero = false;
+        this.xSize = xSize;
+        this.ySize = ySize;
 
         //Add setting of the object size using xSize and ySize. These are protected attributes of the Physics class
     }
