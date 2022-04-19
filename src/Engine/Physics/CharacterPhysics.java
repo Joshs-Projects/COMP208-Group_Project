@@ -80,7 +80,7 @@ public class CharacterPhysics extends Movement {
     }
 
     /**
-     * A default constructor
+     * A blank constructor
      */
     public CharacterPhysics() {
 
