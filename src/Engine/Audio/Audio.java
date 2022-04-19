@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 
-public class Audio {
+public class Audio extends Thread {
 
     //Add private attributes for
     private String filePath;
@@ -31,7 +31,12 @@ public class Audio {
     }
 
     public double getVolume() {
-        return volume;
+        if (volume > 10 || volume < 0) {
+            throw new IllegalArgumentException("Volume value has to be in range [0.0, 10.0].");
+        }
+        else {
+            return volume;
+        }
     }
 
     public void setVolume(double volume) {
@@ -40,7 +45,11 @@ public class Audio {
     }
 
     public float getPanAmount() {
-        return panAmount;
+        if (panAmount > 1.0 || panAmount < -1.0 ) {
+            throw new IllegalArgumentException("panAmount value has to be in range [-1.0, 1.0].");
+        } else {
+            return panAmount;
+        }
     }
 
     public void setPanAmount(float panAmount) {
@@ -61,21 +70,11 @@ public class Audio {
         return isPlaying;
     }
 
-    public static void main(String[] args) {
-        // Instantiates itself
-        Audio audio = new Audio("src/Engine/Audio/ThinkBreak.wav");
-        //File file = new File("src/Engine/Audio/ThinkBreak.wav"); // just an arbitrary sample for now
-        audio.playAudio();
-        audio.playPause();
-        System.out.println("Playing again");
-        audio.playAudio();
-    }
-
     public void playAudio() {
+        if (!lineOut.isOpen()) {
+            openLine();
+        }
         try {
-            if (!lineOut.isOpen()) {
-                openLine();
-            }
             lineOut.start();
             isPlaying = true;
 
@@ -149,7 +148,7 @@ public class Audio {
     //Default constructor
     public Audio(String filePath) {
         this.file = new File(filePath);
-        this.volume = 10.0;
+        this.volume = 2.0;
         this.panAmount = 0.0f;
         this.mute = false;
         this.buffSize = 4096;
@@ -172,6 +171,8 @@ public class Audio {
         this.buffSize = buffSize;
         openLine();
     }
-    //Make constructors the same way with parameters you want to set
-    //Inside the constructor change the private parameters using this."nameOfAttribute" = newParameterValue
+
+    public void run() {
+        playAudio();
+    }
 }
