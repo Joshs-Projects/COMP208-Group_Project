@@ -83,7 +83,7 @@ public class PhysicsTester {
         Renderer testRender = new Renderer(1200, 720, "Physics Test");
 
         testRender.Window();
-        //testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+        testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
 
         for (int i = 0; i < 100; i++){
 
