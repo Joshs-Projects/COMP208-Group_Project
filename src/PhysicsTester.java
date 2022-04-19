@@ -87,8 +87,8 @@ public class PhysicsTester {
 
         for (int i = 0; i < 100; i++){
 
-            testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
-            testRender.addImage("TestAsset.png", character2.getxPos(), character2.getyPos(), character2.getxSize(), character2.getySize());
+            testRender.addImage("stingRay.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+            testRender.addImage("stingRay.png", character2.getxPos(), character2.getyPos(), character2.getxSize(), character2.getySize());
             try {
                 sleep(5);
             } catch (InterruptedException e) {

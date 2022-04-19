@@ -1,5 +1,13 @@
-package Engine.Rendering;
+/**
+ * The Renderer class defines functions to use when drawing objects on the screen in the Red Ray Engine.
+ * Adding images, text, and buttons, with a variety of customisation options.
+ * It provides the ability to draw multiple images and clear them from the screen to allow for animation within a game.
+ * With a pre-built pause menu to use within a game.
+ *
+ * @author Ethan Myles.
+ */
 
+package Engine.Rendering;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -11,12 +19,22 @@ public class Renderer {
 
     private JFrame frame;
 
+    /**
+     * Constructor defining the window size and title.
+     *
+     * @param xResolution an integer that specifies the width of the window.
+     * @param yResolution an integer that specifies the length of the window.
+     * @param windowTitle an integer that specifies the title for the window.
+     */
     public Renderer(int xResolution, int yResolution, String windowTitle) {
         this.xResolution = xResolution;
         this.yResolution = yResolution;
         this.windowTitle = windowTitle;
     }
 
+    /**
+     * Creates a window setting its size and layout.
+     */
     public void Window() {
 
         frame = new JFrame(windowTitle);
@@ -26,8 +44,15 @@ public class Renderer {
         frame.setLayout(null);
     }
 
-    // default method with all the required parameters needed to add an image
-
+    /**
+     * Render an image onto a defined window.
+     *
+     * @param imageName a String storing the name and extension of the image.
+     * @param xPosition an integer specifying where on the x-axis the image should be drawn.
+     * @param yPosition an integer specifying where on the y-axis the image should be drawn.
+     * @param width an integer specifying the width of the image to define the size of the Jlabel.
+     * @param height an integer specifying the length of the image to define the size of the Jlabel.
+     */
     public void addImage(String imageName,int xPosition, int yPosition, int width, int height){
 
         ImageIcon image = new ImageIcon(imageName);
@@ -42,8 +67,17 @@ public class Renderer {
 
     }
 
-    // Optional parameters to add a hit box
-
+    /**
+     * Render an image with a hit-box around the perimeter.
+     *
+     * @param imageName a String storing the name and extension of the image.
+     * @param xPosition an integer specifying where on the x-axis the image should be drawn.
+     * @param yPosition an integer specifying where on the y-axis the image should be drawn.
+     * @param width an integer specifying the width of the image to define the size of the Jlabel.
+     * @param height an integer specifying the length of the image to define the size of the Jlabel.
+     * @param hitColour a Color specifying the colour of the hit-box.
+     * @param hitThickness an integer specifying the amount of pixels in the line surrounding the image.
+     */
     public void addImage(String imageName,int xPosition, int yPosition, int width, int height, Color hitColour, int hitThickness){
 
         ImageIcon image = new ImageIcon(imageName);
@@ -61,6 +95,14 @@ public class Renderer {
 
     }
 
+    /**
+     * Render a clickable button onto a defined window.
+     *
+     * @param xPosition an integer specifying where on the x-axis the button should be drawn.
+     * @param yPosition an integer specifying where on the y-axis the button should be drawn.
+     * @param width an integer specifying the width of the button.
+     * @param height an integer specifying the length of the button.
+     */
     public void addButton(int xPosition, int yPosition, int width, int height){
 
         JButton button = new JButton();
@@ -72,8 +114,15 @@ public class Renderer {
 
     }
 
-    // default custom button
-
+    /**
+     * Render a clickable button with an image background onto a defined window.
+     *
+     * @param xPosition an integer specifying where on the x-axis the button should be drawn.
+     * @param yPosition an integer specifying where on the y-axis the button should be drawn.
+     * @param width an integer specifying the width of the button.
+     * @param height an integer specifying the length of the button.
+     * @param imageName a String storing the name and extension of the image used as the background of the button.
+     */
     public void addCustomButton(int xPosition, int yPosition, int width, int height, String imageName){
 
         ImageIcon image = new ImageIcon(imageName);
@@ -90,8 +139,16 @@ public class Renderer {
 
     }
 
-    // customised button with an image and text
-
+    /**
+     * Render a clickable button with a title and image background onto a defined window.
+     *
+     * @param xPosition an integer specifying where on the x-axis the button should be drawn.
+     * @param yPosition an integer specifying where on the y-axis the button should be drawn.
+     * @param width an integer specifying the width of the button.
+     * @param height an integer specifying the length of the button.
+     * @param imageName a String storing the name and extension of the image used as the background of the button.
+     * @param buttonText a String storing the title text rendered centrally across the width of the button.
+     */
     public void addCustomButton(int xPosition, int yPosition, int width, int height, String imageName, String buttonText){
 
         ImageIcon image = new ImageIcon(imageName);
@@ -115,6 +172,9 @@ public class Renderer {
 
     }
 
+    /**
+     * Render a three button menu with Resume, Options and Exit choices.
+     */
     public void pauseMenu(){
 
         // remove all other objects from the frame while paused
@@ -174,14 +234,23 @@ public class Renderer {
 
     }
 
+    /**
+     * Removes all objects drawn currently on a defined window.
+     */
     public void clearScreen(){
         frame.getContentPane().removeAll();
         frame.repaint();
     }
 
-    // Deafault function for drawing text to a window
-
-    public void addText(String text,int positionX,int positionY,int textSize){
+    /**
+     * Render text on a defined window.
+     *
+     * @param text a String storing the characters to be shown.
+     * @param textX an integer specifying where on the x-axis the text should be drawn.
+     * @param textY an integer specifying where on the y-axis the text should be drawn.
+     * @param textSize an integer specifying the scale of the text.
+     */
+    public void addText(String text,int textX,int textY,int textSize){
 
         Font font = new Font("SansSerif",Font.PLAIN,textSize);
 
@@ -189,7 +258,7 @@ public class Renderer {
 
         JLabel label = new JLabel();
         label.setText(text);
-        label.setBounds(positionX,positionY,(characterLength*(textSize/2)),textSize*2);
+        label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
         label.setFont(font);
 
         frame.setVisible(true);
@@ -197,8 +266,16 @@ public class Renderer {
 
     }
 
-    // Optional parameters to add the font and the colour of the text
-
+    /**
+     * Render text with a font and colour on a defined window.
+     *
+     * @param text a String storing the characters to be shown.
+     * @param textX an integer specifying where on the x-axis the text should be drawn.
+     * @param textY an integer specifying where on the y-axis the text should be drawn.
+     * @param textSize an integer specifying the scale of the text.
+     * @param textFont a String storing the name of the font typeface.
+     * @param textColor a Color specifying the colour of the text.
+     */
     public void addCustomText(String text,int textX,int textY,int textSize,String textFont,Color textColor){
 
         Font font = new Font(textFont,Font.PLAIN,textSize);
@@ -216,8 +293,17 @@ public class Renderer {
 
     }
 
-    // Optional parameters to add the style of the font, 0 for plain, 1 for bold.
-
+    /**
+     * Render text with a font, style and colour on a defined window.
+     *
+     * @param text a String storing the characters to be shown.
+     * @param textX an integer specifying where on the x-axis the text should be drawn.
+     * @param textY an integer specifying where on the y-axis the text should be drawn.
+     * @param textSize an integer specifying the scale of the text.
+     * @param textFont a String storing the name of the font typeface.
+     * @param textStyle a String storing the name of the font typestyle.
+     * @param textColor a Color specifying the colour of the text.
+     */
     public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor){
 
         Font font = new Font(textFont,textStyle,textSize);
@@ -235,9 +321,19 @@ public class Renderer {
 
     }
 
-    // Optional parameter to reverse the letters in the text.
-
-    public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor, boolean reverse){
+    /**
+     * Render text with a font, style and colour, with the option to be reversed, on a defined window.
+     *
+     * @param text a String storing the characters to be shown.
+     * @param textX an integer specifying where on the x-axis the text should be drawn.
+     * @param textY an integer specifying where on the y-axis the text should be drawn.
+     * @param textSize an integer specifying the scale of the text.
+     * @param textFont a String storing the name of the font typeface.
+     * @param textStyle a String storing the name of the font typestyle.
+     * @param textColor a Color specifying the colour of the text.
+     * @param textReverse a boolean specifying weather the characters in text should be rendered in the opposite order.
+     */
+    public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor, boolean textReverse){
 
         Font font = new Font(textFont,textStyle,textSize);
 
@@ -245,7 +341,7 @@ public class Renderer {
 
         JLabel label = new JLabel();
 
-        if (reverse){
+        if (textReverse){
             String reverseText = new StringBuilder(text).reverse().toString();
             label.setText(reverseText);
         }
