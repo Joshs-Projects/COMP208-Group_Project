@@ -1,4 +1,5 @@
 import Engine.Rendering.Renderer;
+import Engine.Rendering.buttonRendering;
 import Engine.Rendering.imageRendering;
 
 import javax.swing.*;
@@ -14,13 +15,11 @@ public class RendererTester {
         JFrame frame = display.getFrame();
 
         imageRendering image = new imageRendering(frame);
-
-        /*
-        display.Window();
-        display.addCustomText("Blaise", 200,200,100,"Arial",0,Color.BLACK,true,false);
-        display.addCustomText("Blaise", 200,200,100,"Arial",0,Color.BLACK,true,false);
-         */
         image.addImage("stingRay.png",0,0,256,256);
+
+        buttonRendering button = new buttonRendering(frame);
+        button.addButton(200,30,50,50);
+
     }
     public static void main(String args[]){
         RendererTester test = new RendererTester();
