@@ -1,6 +1,7 @@
 import Engine.Rendering.Renderer;
 import Engine.Rendering.buttonRendering;
 import Engine.Rendering.imageRendering;
+import Engine.Rendering.textRendering;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,9 @@ public class RendererTester {
 
         buttonRendering button = new buttonRendering(frame);
         button.addButton(200,30,50,50);
+
+        textRendering text = new textRendering(frame);
+        text.addText("Sting Rays are cool",200,50,50);
 
     }
     public static void main(String args[]){
