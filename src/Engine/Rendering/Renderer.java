@@ -1,8 +1,7 @@
 /**
- * The Renderer class defines functions to use when drawing objects on the screen in the Red Ray Engine.
- * Adding images, text, and buttons, with a variety of customisation options.
- * It provides the ability to draw multiple images and clear them from the screen to allow for animation within a game.
- * With a pre-built pause menu to use within a game.
+ * Define the drawing of a window on the screen which objects can be later added to.
+ * With some additional functionality to clear the screen which may be used for animations.
+ * A pause menu to be used as a template within a game.
  *
  * @author Ethan Myles.
  */
@@ -43,6 +42,9 @@ public class Renderer {
         frame.setLayout(null);
     }
 
+    /**
+     * Obtain the frame to be passed to other classes.
+     */
     public JFrame getFrame(){
 
         return frame;

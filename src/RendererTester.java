@@ -1,13 +1,21 @@
+/**
+ * To check the functions written in the classes associated with rendering perform correctly.
+ *
+ * @author Ethan Myles.
+ */
+
 import Engine.Rendering.Renderer;
 import Engine.Rendering.buttonRendering;
 import Engine.Rendering.imageRendering;
 import Engine.Rendering.textRendering;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class RendererTester {
 
+    /**
+     * Assess the results of the rendering.
+     */
     public RendererTester(){
         Renderer display = new Renderer(1200, 720, "A New Game");
 
@@ -25,6 +33,9 @@ public class RendererTester {
         text.addText("Sting Rays are cool",200,50,50);
 
     }
+    /**
+     * main method used to view the results.
+     */
     public static void main(String args[]){
         RendererTester test = new RendererTester();
     }

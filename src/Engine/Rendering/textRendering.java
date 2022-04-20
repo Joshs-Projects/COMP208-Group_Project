@@ -1,5 +1,10 @@
-package Engine.Rendering;
+/**
+ * draw text on a window, with a variety of customisation options.
+ *
+ * @author Ethan Myles.
+ */
 
+package Engine.Rendering;
 import javax.swing.*;
 import java.awt.*;
 
