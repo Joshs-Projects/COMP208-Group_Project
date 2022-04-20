@@ -1,15 +1,13 @@
 /**
- * The Renderer class defines functions to use when drawing objects on the screen in the Red Ray Engine.
- * Adding images, text, and buttons, with a variety of customisation options.
- * It provides the ability to draw multiple images and clear them from the screen to allow for animation within a game.
- * With a pre-built pause menu to use within a game.
+ * Define the drawing of a window on the screen which objects can be later added to.
+ * With some additional functionality to clear the screen which may be used for animations.
+ * A pause menu to be used as a template within a game.
  *
  * @author Ethan Myles.
  */
 
 package Engine.Rendering;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class Renderer {
@@ -45,131 +43,11 @@ public class Renderer {
     }
 
     /**
-     * Render an image onto a defined window.
-     *
-     * @param imageName a String storing the name and extension of the image.
-     * @param xPosition an integer specifying where on the x-axis the image should be drawn.
-     * @param yPosition an integer specifying where on the y-axis the image should be drawn.
-     * @param width an integer specifying the width of the image to define the size of the Jlabel.
-     * @param height an integer specifying the length of the image to define the size of the Jlabel.
+     * Obtain the frame to be passed to other classes.
      */
-    public void addImage(String imageName,int xPosition, int yPosition, int width, int height){
+    public JFrame getFrame(){
 
-        ImageIcon image = new ImageIcon(imageName);
-
-        JLabel label = new JLabel();
-
-        label.setBounds(xPosition,yPosition,width,height);
-        label.setIcon(image);
-
-        frame.add(label);
-        frame.setVisible(true);
-
-    }
-
-    /**
-     * Render an image with a hit-box around the perimeter.
-     *
-     * @param imageName a String storing the name and extension of the image.
-     * @param xPosition an integer specifying where on the x-axis the image should be drawn.
-     * @param yPosition an integer specifying where on the y-axis the image should be drawn.
-     * @param width an integer specifying the width of the image to define the size of the Jlabel.
-     * @param height an integer specifying the length of the image to define the size of the Jlabel.
-     * @param hitColour a Color specifying the colour of the hit-box.
-     * @param hitThickness an integer specifying the amount of pixels in the line surrounding the image.
-     */
-    public void addImage(String imageName,int xPosition, int yPosition, int width, int height, Color hitColour, int hitThickness){
-
-        ImageIcon image = new ImageIcon(imageName);
-
-        Border border = BorderFactory.createLineBorder(hitColour,hitThickness);
-
-        JLabel label = new JLabel();
-
-        label.setBounds(xPosition,yPosition,width,height);
-        label.setIcon(image);
-        label.setBorder(border);
-
-        frame.add(label);
-        frame.setVisible(true);
-
-    }
-
-    /**
-     * Render a clickable button onto a defined window.
-     *
-     * @param xPosition an integer specifying where on the x-axis the button should be drawn.
-     * @param yPosition an integer specifying where on the y-axis the button should be drawn.
-     * @param width an integer specifying the width of the button.
-     * @param height an integer specifying the length of the button.
-     */
-    public void addButton(int xPosition, int yPosition, int width, int height){
-
-        JButton button = new JButton();
-        button.setBounds(xPosition,yPosition,width,height);
-        button.addActionListener(e -> System.out.println("Pressed !"));
-
-        frame.add(button);
-        frame.setVisible(true);
-
-    }
-
-    /**
-     * Render a clickable button with an image background onto a defined window.
-     *
-     * @param xPosition an integer specifying where on the x-axis the button should be drawn.
-     * @param yPosition an integer specifying where on the y-axis the button should be drawn.
-     * @param width an integer specifying the width of the button.
-     * @param height an integer specifying the length of the button.
-     * @param imageName a String storing the name and extension of the image used as the background of the button.
-     */
-    public void addCustomButton(int xPosition, int yPosition, int width, int height, String imageName){
-
-        ImageIcon image = new ImageIcon(imageName);
-
-        JButton button = new JButton();
-        button.setBounds(xPosition,yPosition,width,height);
-        button.addActionListener(e -> System.out.println("Pressed !"));
-        button.setIcon(image);
-        //removes the small border around the image, visible if the button is bigger than the image
-        button.setFocusPainted(false);
-
-        frame.add(button);
-        frame.setVisible(true);
-
-    }
-
-    /**
-     * Render a clickable button with a title and image background onto a defined window.
-     *
-     * @param xPosition an integer specifying where on the x-axis the button should be drawn.
-     * @param yPosition an integer specifying where on the y-axis the button should be drawn.
-     * @param width an integer specifying the width of the button.
-     * @param height an integer specifying the length of the button.
-     * @param imageName a String storing the name and extension of the image used as the background of the button.
-     * @param buttonText a String storing the title text rendered centrally across the width of the button.
-     */
-    public void addCustomButton(int xPosition, int yPosition, int width, int height, String imageName, String buttonText){
-
-        ImageIcon image = new ImageIcon(imageName);
-
-        JButton button = new JButton();
-        button.setBounds(xPosition,yPosition,width,height);
-        button.addActionListener(a -> System.out.println("Pressed !"));
-        frame.setVisible(true);
-        button.setIcon(image);
-        button.setFocusPainted(false);
-        button.setText(buttonText);
-        // center the text otherwise a big image could push it off the size of the button
-        button.setHorizontalTextPosition(0);
-        button.setVerticalTextPosition(0);
-
-        Font font = new Font("SansSerif", Font.BOLD, 20);
-        button.setFont(font);
-
-        frame.add(button);
-        frame.setVisible(true);
-
+        return frame;
     }
 
     /**
@@ -239,123 +117,8 @@ public class Renderer {
      */
     public void clearScreen(){
         frame.getContentPane().removeAll();
-        frame.repaint();
-    }
-
-    /**
-     * Render text on a defined window.
-     *
-     * @param text a String storing the characters to be shown.
-     * @param textX an integer specifying where on the x-axis the text should be drawn.
-     * @param textY an integer specifying where on the y-axis the text should be drawn.
-     * @param textSize an integer specifying the scale of the text.
-     */
-    public void addText(String text,int textX,int textY,int textSize){
-
-        Font font = new Font("SansSerif",Font.PLAIN,textSize);
-
-        int characterLength = text.length();
-
-        JLabel label = new JLabel();
-        label.setText(text);
-        label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
-        label.setFont(font);
-
-        frame.setVisible(true);
-        frame.add(label);
-
-    }
-
-    /**
-     * Render text with a font and colour on a defined window.
-     *
-     * @param text a String storing the characters to be shown.
-     * @param textX an integer specifying where on the x-axis the text should be drawn.
-     * @param textY an integer specifying where on the y-axis the text should be drawn.
-     * @param textSize an integer specifying the scale of the text.
-     * @param textFont a String storing the name of the font typeface.
-     * @param textColor a Color specifying the colour of the text.
-     */
-    public void addCustomText(String text,int textX,int textY,int textSize,String textFont,Color textColor){
-
-        Font font = new Font(textFont,Font.PLAIN,textSize);
-
-        int characterLength = text.length();
-
-        JLabel label = new JLabel();
-        label.setText(text);
-        label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
-        label.setForeground(textColor);
-        label.setFont(font);
-
-        frame.setVisible(true);
-        frame.add(label);
-
-    }
-
-    /**
-     * Render text with a font, style and colour on a defined window.
-     *
-     * @param text a String storing the characters to be shown.
-     * @param textX an integer specifying where on the x-axis the text should be drawn.
-     * @param textY an integer specifying where on the y-axis the text should be drawn.
-     * @param textSize an integer specifying the scale of the text.
-     * @param textFont a String storing the name of the font typeface.
-     * @param textStyle a String storing the name of the font typestyle.
-     * @param textColor a Color specifying the colour of the text.
-     */
-    public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor){
-
-        Font font = new Font(textFont,textStyle,textSize);
-
-        int characterLength = text.length();
-
-        JLabel label = new JLabel();
-        label.setText(text);
-        label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
-        label.setForeground(textColor);
-        label.setFont(font);
-
-        frame.setVisible(true);
-        frame.add(label);
-
-    }
-
-    /**
-     * Render text with a font, style and colour, with the option to be reversed, on a defined window.
-     *
-     * @param text a String storing the characters to be shown.
-     * @param textX an integer specifying where on the x-axis the text should be drawn.
-     * @param textY an integer specifying where on the y-axis the text should be drawn.
-     * @param textSize an integer specifying the scale of the text.
-     * @param textFont a String storing the name of the font typeface.
-     * @param textStyle a String storing the name of the font typestyle.
-     * @param textColor a Color specifying the colour of the text.
-     * @param textReverse a boolean specifying weather the characters in text should be rendered in the opposite order.
-     */
-    public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor, boolean textReverse){
-
-        Font font = new Font(textFont,textStyle,textSize);
-
-        int characterLength = text.length();
-
-        JLabel label = new JLabel();
-
-        if (textReverse){
-            String reverseText = new StringBuilder(text).reverse().toString();
-            label.setText(reverseText);
-        }
-        else{
-            label.setText(text);
-        }
-
-        label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
-        label.setForeground(textColor);
-        label.setFont(font);
-
-        frame.setVisible(true);
-        frame.add(label);
-
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
     }
 
 }
