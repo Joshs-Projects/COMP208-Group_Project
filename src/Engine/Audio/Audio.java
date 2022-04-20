@@ -5,9 +5,13 @@ import java.io.File;
 import java.io.IOException;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 
+/**
+ * This class defines methods that implement audio functionality
+ *
+ * @Author Blaise Nowosielski
+ */
 public class Audio extends Thread {
 
-    //Add private attributes for
     private String filePath;
     private File file;
     private double volume;
@@ -22,14 +26,29 @@ public class Audio extends Thread {
     private FloatControl panControl;
     private BooleanControl muteControl;
 
+    /**
+     * Gets the filePath attribute
+     *
+     * @return String filePath
+     */
     public String getFilePath() {
         return filePath;
     }
 
+    /**
+     * Sets the filePath attribute
+     *
+     * @param filePath a string defining the file path of the audio file to be played
+     */
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Gets the volume attribute
+     *
+     * @return double volume
+     */
     public double getVolume() {
         if (volume > 10 || volume < 0) {
             throw new IllegalArgumentException("Volume value has to be in range [0.0, 10.0].");
@@ -39,11 +58,21 @@ public class Audio extends Thread {
         }
     }
 
+    /**
+     * Sets the volume attribute
+     *
+     * @param volume a double representing the loudness of the audio file being played
+     */
     public void setVolume(double volume) {
         this.volume = volume;
         this.volControl.setValue((float) (6.0206 * Math.log10(this.volume)));
     }
 
+    /**
+     * Gets the panAmount attribute
+     *
+     * @return float panAmount
+     */
     public float getPanAmount() {
         if (panAmount > 1.0 || panAmount < -1.0 ) {
             throw new IllegalArgumentException("panAmount value has to be in range [-1.0, 1.0].");
@@ -52,48 +81,50 @@ public class Audio extends Thread {
         }
     }
 
+    /**
+     * Sets the panAmount attribute
+     *
+     * @param panAmount a float representing the left (-1) to right (1) stereo image of the audio file
+     */
     public void setPanAmount(float panAmount) {
         this.panAmount = panAmount;
         this.panControl.setValue(panAmount);
     }
 
+    /**
+     * Gets the mute attribute
+     *
+     * @return boolean mute
+     */
     public boolean isMute() {
         return mute;
     }
 
+    /**
+     * Sets the mute attribute
+     *
+     * @param mute a boolean determining whether an audio file is muted or not
+     */
     public void setMute(boolean mute) {
         this.mute = mute;
         this.muteControl.setValue(mute);
     }
 
+    /**
+     * Gets the isPlaying attribute
+     *
+     * @return boolean isPlaying
+     */
     public boolean isPlaying() {
         return isPlaying;
     }
 
-    public void playAudio() {
-        if (!lineOut.isOpen()) {
-            openLine();
-        }
-        try {
-            lineOut.start();
-            isPlaying = true;
-
-            byte[] buffer = new byte[this.buffSize];
-            for (int i = 0; i != -1; i = lineIn.read(buffer, 0, buffSize)) {
-                lineOut.write(buffer, 0, i);
-            }
-            // System.out.println("working?");
-            // closes output line
-            lineOut.drain();
-            lineOut.stop();
-            isPlaying = false;
-            lineOut.close();
-        }
-        catch ( IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Gets the format by which the output line should be written
+     *
+     * @param lineInFormat the format details of the audio file being read by the input line
+     * @return AudioFormat
+     */
     private AudioFormat getOutputFormat(AudioFormat lineInFormat) {
         int outChannels = 2; // 1 if mono
         return new AudioFormat(
@@ -107,17 +138,55 @@ public class Audio extends Thread {
         );
     }
 
-    public void playPause() {
-        if (isPlaying) {
-            lineOut.stop();
-            System.out.println("stopped");
+    /**
+     * Opens the output line if not open
+     * Reads every byte of data from the line reading the audio file & writes it to the output line
+     * If it reaches the end of the audio file, closes the output line
+     */
+    public void playAudio() {
+        if (!lineOut.isOpen()) {
+            openLine();
         }
-        else {
+        try {
             lineOut.start();
-            System.out.println("started");
+            isPlaying = true;
+            byte[] buffer = new byte[this.buffSize];
+            for (int i = 0; i != -1; i = lineIn.read(buffer, 0, buffSize)) {
+                lineOut.write(buffer, 0, i);
+            }
+            // System.out.println("working?");
+            // Closes output line
+            lineOut.stop();
+            isPlaying = false;
+            lineOut.drain();
+            lineOut.close();
+        }
+        catch ( IOException e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * If the audio object is playing, stop it
+     * If the audio object is not playing re-play the audio file from the beginning
+     */
+    public void replayPause() {
+        if (isPlaying) {
+            lineOut.stop();
+            isPlaying = false;
+            lineOut.drain();
+            lineOut.close();
+        }
+        else {
+            playAudio();
+        }
+    }
+
+    /**
+     * Connects the input line to the AudioSystem reading the file
+     * Sets the format for writing to the output line & opens it
+     * Gets the output line controls for volume, panning & muting and sets their values
+     */
     private void openLine(){
         try {
             this.lineIn = AudioSystem.getAudioInputStream(file);
@@ -130,8 +199,8 @@ public class Audio extends Thread {
         }
         // CHANGES VOLUME
         // System.out.println(lineOut.isControlSupported(FloatControl.Type.MASTER_GAIN));
-        // maps volume range from decibels (logarithmic) to between 0 and 10
         this.volControl = (FloatControl) this.lineOut.getControl(FloatControl.Type.MASTER_GAIN);
+        // maps volume range from decibels (logarithmic) to between 0 & 10
         this.volControl.setValue((float) (6.0206 * Math.log10(this.volume)));
 
         // CHANGES PAN
@@ -145,16 +214,29 @@ public class Audio extends Thread {
         this.muteControl.setValue(mute);
     }
 
-    //Default constructor
+    /**
+     * The most primitive constructor, where the filePath is the only mandatory parameter
+     * The other attributes are set to appropriate default values
+     *
+     * @param filePath a string defining the file path of the audio file to be played
+     */
     public Audio(String filePath) {
         this.file = new File(filePath);
-        this.volume = 2.0;
+        this.volume = 2.0f;
         this.panAmount = 0.0f;
         this.mute = false;
         this.buffSize = 4096;
         openLine();
     }
 
+    /**
+     * The most practical constructor, setting the filePath, volume, panAmount & mute
+     *
+     * @param filePath a string defining the file path of the audio file to be played
+     * @param volume a double representing the loudness of the audio file being played
+     * @param panAmount a float representing the left (-1) to right (1) stereo image of the audio file
+     * @param mute a boolean determining whether an audio file is muted or not
+     */
     public Audio(String filePath, double volume, float panAmount, boolean mute) {
         this.file = new File(filePath);
         this.volume = volume;
@@ -162,6 +244,18 @@ public class Audio extends Thread {
         this.mute = mute;
         openLine();
     }
+
+    /**
+     * The more specialist constructor, setting the filePath, volume, panAmount, mute & buffSize
+     * Most users will not need to manipulate the buffer size
+     * Only necessary if the default value is causing audio artifacts
+     *
+     * @param filePath a string defining the file path of the audio file to be played
+     * @param volume a double representing the loudness of the audio file being played
+     * @param panAmount a float representing the left (-1) to right (1) stereo image of the audio file
+     * @param mute a boolean determining whether an audio file is muted or not
+     * @param buffSize an int determining the size of the audio buffer
+     */
 
     public Audio(String filePath, double volume, float panAmount, boolean mute, int buffSize) {
         this.file = new File(filePath);
@@ -172,6 +266,11 @@ public class Audio extends Thread {
         openLine();
     }
 
+    /**
+     * When the audio object started, it creates a new thread where run() is executed
+     * This allows for audio to be played simultaneous to the rest of the game's execution
+     * And for multiple audio files to be played at the same time
+     */
     public void run() {
         playAudio();
     }

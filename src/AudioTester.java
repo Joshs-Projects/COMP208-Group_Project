@@ -9,9 +9,9 @@ public class AudioTester {
         //audio.playAudio();
         audio.start();
         Thread.sleep(1000);
-        audio.playPause();
+        audio.replayPause();
         Thread.sleep(500);
-        audio.playPause();
+        audio.replayPause();
         System.out.println("dududu");
         /*
         audio.playPause();
