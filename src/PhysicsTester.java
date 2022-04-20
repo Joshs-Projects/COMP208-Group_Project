@@ -1,5 +1,8 @@
 import Engine.Physics.*;
 import Engine.Rendering.*;
+import Engine.Rendering.Renderer;
+
+import javax.swing.*;
 
 import static java.lang.Thread.sleep;
 
@@ -83,17 +86,21 @@ public class PhysicsTester {
         Renderer testRender = new Renderer(1200, 720, "Physics Test");
 
         testRender.Window();
-        testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+        JFrame frame = testRender.getFrame();
+
+        imageRendering image = new imageRendering(frame);
+
+
+
+        image.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+        image.addImage("TestAsset.png", character.getxPos()+300, character.getyPos(), character.getxSize(), character.getySize());
+
 
         for (int i = 0; i < 100; i++){
 
-            testRender.addImage("stingRay.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
-            testRender.addImage("stingRay.png", character2.getxPos(), character2.getyPos(), character2.getxSize(), character2.getySize());
-            try {
-                sleep(5);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            image.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+            image.addImage("TestAsset.png", character2.getxPos(), character2.getyPos(), character2.getxSize(), character2.getySize());
+
             testRender.clearScreen();
             character.Update();
             character2.Update();
@@ -102,9 +109,8 @@ public class PhysicsTester {
 
         }
 
-        testRender.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
-        testRender.addImage("TestAsset.png", character2.getxPos(), character2.getyPos(), character2.getxSize(), character2.getySize());
-
+        image.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
+        image.addImage("TestAsset.png", character2.getxPos(), character2.getyPos(), character2.getxSize(), character2.getySize());
 
     }
 }

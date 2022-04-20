@@ -44,55 +44,8 @@ public class Renderer {
         frame.setLayout(null);
     }
 
-    /**
-     * Render an image onto a defined window.
-     *
-     * @param imageName a String storing the name and extension of the image.
-     * @param xPosition an integer specifying where on the x-axis the image should be drawn.
-     * @param yPosition an integer specifying where on the y-axis the image should be drawn.
-     * @param width an integer specifying the width of the image to define the size of the Jlabel.
-     * @param height an integer specifying the length of the image to define the size of the Jlabel.
-     */
-    public void addImage(String imageName,int xPosition, int yPosition, int width, int height){
-
-        ImageIcon image = new ImageIcon(imageName);
-
-        JLabel label = new JLabel();
-
-        label.setBounds(xPosition,yPosition,width,height);
-        label.setIcon(image);
-
-        frame.add(label);
-        frame.setVisible(true);
-
-    }
-
-    /**
-     * Render an image with a hit-box around the perimeter.
-     *
-     * @param imageName a String storing the name and extension of the image.
-     * @param xPosition an integer specifying where on the x-axis the image should be drawn.
-     * @param yPosition an integer specifying where on the y-axis the image should be drawn.
-     * @param width an integer specifying the width of the image to define the size of the Jlabel.
-     * @param height an integer specifying the length of the image to define the size of the Jlabel.
-     * @param hitColour a Color specifying the colour of the hit-box.
-     * @param hitThickness an integer specifying the amount of pixels in the line surrounding the image.
-     */
-    public void addImage(String imageName,int xPosition, int yPosition, int width, int height, Color hitColour, int hitThickness){
-
-        ImageIcon image = new ImageIcon(imageName);
-
-        Border border = BorderFactory.createLineBorder(hitColour,hitThickness);
-
-        JLabel label = new JLabel();
-
-        label.setBounds(xPosition,yPosition,width,height);
-        label.setIcon(image);
-        label.setBorder(border);
-
-        frame.add(label);
-        frame.setVisible(true);
-
+    public JFrame getFrame(){
+        return frame;
     }
 
     /**
@@ -239,7 +192,8 @@ public class Renderer {
      */
     public void clearScreen(){
         frame.getContentPane().removeAll();
-        frame.repaint();
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
     }
 
     /**
@@ -333,7 +287,7 @@ public class Renderer {
      * @param textColor a Color specifying the colour of the text.
      * @param textReverse a boolean specifying weather the characters in text should be rendered in the opposite order.
      */
-    public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor, boolean textReverse){
+    public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor, boolean textMirror, boolean textReverse){
 
         Font font = new Font(textFont,textStyle,textSize);
 
@@ -341,9 +295,9 @@ public class Renderer {
 
         JLabel label = new JLabel();
 
-        if (textReverse){
-            String reverseText = new StringBuilder(text).reverse().toString();
-            label.setText(reverseText);
+        if (textMirror){
+            String mirroredText = new StringBuilder(text).reverse().toString();
+            label.setText(mirroredText);
         }
         else{
             label.setText(text);
@@ -357,5 +311,4 @@ public class Renderer {
         frame.add(label);
 
     }
-
 }
