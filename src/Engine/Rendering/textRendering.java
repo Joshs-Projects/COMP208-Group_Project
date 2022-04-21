@@ -119,6 +119,25 @@ public class textRendering {
             String mirroredText = new StringBuilder(text).reverse().toString();
             label.setText(mirroredText);
         }
+
+        else if(textReverse){
+
+            String[] words = text.split(" ");
+            String reversedText = "";
+
+            // for all the words in the string.
+            for (int i = 0; i < words.length; i++) {
+                //reading from left to right adding the next word read to the left each time to reverse the string.
+                if(i == words.length-1){
+                    reversedText = words[i] + reversedText;
+                }
+                else{
+                    reversedText = " " + words[i] + reversedText;
+                }
+            }
+            label.setText(reversedText);
+        }
+
         else{
             label.setText(text);
         }

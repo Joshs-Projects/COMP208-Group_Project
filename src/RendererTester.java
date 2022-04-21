@@ -10,6 +10,7 @@ import Engine.Rendering.imageRendering;
 import Engine.Rendering.textRendering;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class RendererTester {
 
@@ -23,14 +24,17 @@ public class RendererTester {
 
         JFrame frame = display.getFrame();
 
+        /*
         imageRendering image = new imageRendering(frame);
         image.addImage("stingRay.png",0,0,256,256);
 
         buttonRendering button = new buttonRendering(frame);
         button.addButton(200,30,50,50);
 
+         */
+
         textRendering text = new textRendering(frame);
-        text.addText("Sting Rays are cool",200,50,50);
+        text.addCustomText("Sting Rays are cool",300,0,20,"Arial",0, Color.BLACK,false,true);
 
     }
     /**
