@@ -13,6 +13,9 @@ public class CollisionHandler {
 
     //private ArrayList<ArrayList<Movement>> collisions = new ArrayList<>();
 
+    /**
+     * @param newPhysicsObject
+     */
     public void addPhysicsObject(Movement newPhysicsObject){
         allPhysicsObjects.add(newPhysicsObject);
     }
@@ -35,6 +38,34 @@ public class CollisionHandler {
     //Triangle being if the coords are within 3 lines.
     //Rectangle being if between 2 horizontal and 2 vertical lines
     //As an extra allow the rectangle to be rotated.
+
+    public void findFloorCollisions(){
+        for (int i = 0; i < allPhysicsObjects.size(); i++){
+            int lowerY, upperY;
+            for (int q = 0; q < floors.size(); q++) {
+                lowerY = allPhysicsObjects.get(i).getyPos() + allPhysicsObjects.get(i).getySize();
+                upperY = allPhysicsObjects.get(i).getyPos();
+                if (lowerY <= floors.get(q).getFloorYDimension()){
+                    if (floors.get(q).getPassableWhenMovingDown()){
+                        //Then do nothing
+                    } else {
+                        allPhysicsObjects.get(i).setyVelocity(0);
+                        allPhysicsObjects.get(i).setyAcceleration(0);
+                        allPhysicsObjects.get(i).setxAcceleration(allPhysicsObjects.get(i).getxAcceleration() - floors.get(q).getRateOfSlowDown());
+                        allPhysicsObjects.get(i).setyPos(lowerY + allPhysicsObjects.get(i).getySize());
+                    }
+                } else if (upperY >= (floors.get(q).getFloorYDimension() + floors.get(q).getFloorYSize())) {
+                    if (floors.get(q).getPassableWhenMovingUp()) {
+                        //Then do nothing
+                    } else {
+                        allPhysicsObjects.get(i).setyVelocity(0);
+                        allPhysicsObjects.get(i).setyAcceleration(0);
+                        allPhysicsObjects.get(i).setyPos(upperY);
+                    }
+                }
+            }
+        }
+    }
 
     public void findCollisions(){
         //For every physics object against every other physics object

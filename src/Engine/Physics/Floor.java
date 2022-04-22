@@ -5,6 +5,12 @@ public class Floor {
     private boolean passableWhenMovingUp;
     private boolean passableWhenMovingDown;
 
+    private int xPos;
+    private int yPos;
+
+    private int xSize;
+    private int ySize;
+
 
     public double getRateOfSlowDown() {
         return rateOfSlowDown;
@@ -28,6 +34,22 @@ public class Floor {
 
     public void setPassableWhenMovingDown(boolean passableWhenMovingDown) {
         this.passableWhenMovingDown = passableWhenMovingDown;
+    }
+
+    public int getFloorXDimension(){
+        return xPos;
+    }
+
+    public int getFloorYDimension(){
+        return yPos;
+    }
+
+    public int getFloorXSize(){
+        return xSize;
+    }
+
+    public int getFloorYSize(){
+        return ySize;
     }
 
     public Floor() {
