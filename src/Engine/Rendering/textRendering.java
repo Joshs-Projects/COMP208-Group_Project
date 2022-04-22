@@ -86,7 +86,7 @@ public class textRendering {
 
         JLabel label = new JLabel();
         label.setText(text);
-        label.setBounds(textX,textY,(characterLength*(textSize/2)),textSize*2);
+        label.setBounds(textX,textY,2000,200);
         label.setForeground(textColor);
         label.setFont(font);
 
