@@ -4,7 +4,7 @@ package Engine.InputHandler;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class Input implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
+public class Input implements KeyListener, MouseListener, MouseMotionListener{
 
 
     private final int KEY_AMOUNT = 256; //256 represents the keycodes for keyboard input.
@@ -37,12 +37,12 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        mouseInput[e.getButton()] = true;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        mouseInput[e.getButton()] = false;
     }
 
     @Override
@@ -62,11 +62,8 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        mouseX = (int)(e.getX());
+        mouseY = (int)(e.getY());
     }
 
-    @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
-
-    }
 }

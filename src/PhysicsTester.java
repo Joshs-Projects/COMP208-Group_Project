@@ -72,11 +72,13 @@ public class PhysicsTester {
         CharacterPhysics character2 = new CharacterPhysics(10, 500, 100, -1, 0, 0, 0, 100, 100);
 
         character.setxPos(200);
+        character.setGravity(0.5);
         character.setyPos(100);
         character.setxSize(100);
         character.setySize(100);
         character.setxVelocity(1);
-        character.setyVelocity(0);
+        character.setyVelocity(-2);
+        character.setyAcceleration(-5);
         //character.setGravity(1);
         character.setXTerminalVelocity(10);
         character.setYTerminalVelocity(10);
@@ -100,6 +102,12 @@ public class PhysicsTester {
 
             image.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
             image.addImage("TestAsset.png", character2.getxPos(), character2.getyPos(), character2.getxSize(), character2.getySize());
+
+            try {
+                sleep(25);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             testRender.clearScreen();
             character.Update();

@@ -10,22 +10,6 @@ public class CharacterPhysics extends Movement {
     private boolean slowingYToZero;
     private int ticksYToZero;
 
-
-    /**
-     * Updates the internal attributes to the new x and y position.
-     */
-    public void UpdatePosition() {
-        CalculateDistance();
-    }
-
-    /**
-     * Updates the internal attributes for the x and y velocities.
-     */
-    public void UpdateVelocities() {
-        CalculateXVelocity();
-        CalculateYVelocity();
-    }
-
     //How do we want to do this, instantaneous pushing or continuous pushing. Keep pushing until told to stop or push once and done.
     /**
      * Uses newtonian equation (F = ma) to update the acceleration in x.
@@ -137,13 +121,7 @@ public class CharacterPhysics extends Movement {
             }
         }
 
-        //Must be done
-        //Position -> Velocity
-        //Otherwise the acceleration will be doubled because the velocity will increase and
-        //then the position will be updated with the faster velocity and the acceleration
-        UpdatePosition();
-
-        UpdateVelocities();
+        UpdateMovement();
     }
 
     //These need moving to the Movement or Physics class
