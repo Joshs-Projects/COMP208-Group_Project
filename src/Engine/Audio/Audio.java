@@ -8,7 +8,7 @@ import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 /**
  * This class defines methods that implement audio functionality
  *
- * @Author Blaise Nowosielski
+ * @author Blaise Nowosielski
  */
 public class Audio extends Thread {
 
@@ -140,7 +140,7 @@ public class Audio extends Thread {
 
     /**
      * Opens the output line if not open
-     * Reads every byte of data from the line reading the audio file & writes it to the output line
+     * Reads every byte of data from the line reading the audio file and writes it to the output line
      * If it reaches the end of the audio file, closes the output line
      */
     public void playAudio() {
@@ -184,8 +184,8 @@ public class Audio extends Thread {
 
     /**
      * Connects the input line to the AudioSystem reading the file
-     * Sets the format for writing to the output line & opens it
-     * Gets the output line controls for volume, panning & muting and sets their values
+     * Sets the format for writing to the output line and opens it
+     * Gets the output line controls for volume, panning and muting and sets their values
      */
     private void openLine(){
         try {
@@ -230,7 +230,7 @@ public class Audio extends Thread {
     }
 
     /**
-     * The most practical constructor, setting the filePath, volume, panAmount & mute
+     * The most practical constructor, setting the filePath, volume, panAmount and mute
      *
      * @param filePath a string defining the file path of the audio file to be played
      * @param volume a double representing the loudness of the audio file being played
@@ -246,7 +246,7 @@ public class Audio extends Thread {
     }
 
     /**
-     * The more specialist constructor, setting the filePath, volume, panAmount, mute & buffSize
+     * The more specialist constructor, setting the filePath, volume, panAmount, mute and buffSize
      * Most users will not need to manipulate the buffer size
      * Only necessary if the default value is causing audio artifacts
      *
