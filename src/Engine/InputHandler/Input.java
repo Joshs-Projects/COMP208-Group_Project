@@ -14,6 +14,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
     private int mouseX, mouseY; //Mouse coordinate variables
     private int scroll;
 
+
     private final int MOUSE_BUTTONS = 5;//Left click, right click, middle click, scroll press and so on.
     private boolean mouseInput[] = new boolean[MOUSE_BUTTONS]; //array to keep track of mouse clicks.
 
@@ -65,5 +66,14 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
         mouseX = (int)(e.getX());
         mouseY = (int)(e.getY());
     }
+
+    public int getMouseX(){
+        return mouseX;
+    }
+    public int getMouseY(){
+        return mouseY;
+    }
+
+
 
 }
