@@ -22,19 +22,13 @@ public class RendererTester {
 
         display.Window();
 
+        display.clearScreen();
+
         JFrame frame = display.getFrame();
 
-        /*
-        imageRendering image = new imageRendering(frame);
-        image.addImage("stingRay.png",0,0,256,256);
-
-        buttonRendering button = new buttonRendering(frame);
-        button.addButton(200,30,50,50);
-
-         */
-
         textRendering text = new textRendering(frame);
-        text.addCustomText("Sting Rays are cool",300,0,20,"Arial",0, Color.BLACK,false,true);
+
+        text.addCustomText("Game Over...", 0,0, 20,"Arial",0, Color.BLUE, true, false);
 
     }
     /**

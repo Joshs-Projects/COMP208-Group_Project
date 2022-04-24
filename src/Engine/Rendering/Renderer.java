@@ -22,7 +22,7 @@ public class Renderer {
      *
      * @param xResolution an integer that specifies the width of the window.
      * @param yResolution an integer that specifies the length of the window.
-     * @param windowTitle an integer that specifies the title for the window.
+     * @param windowTitle a String that specifies the title for the window.
      */
     public Renderer(int xResolution, int yResolution, String windowTitle) {
         this.xResolution = xResolution;

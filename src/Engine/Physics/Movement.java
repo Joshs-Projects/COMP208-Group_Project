@@ -170,6 +170,7 @@ public class Movement extends Physics{
      */
     protected void CalculateYVelocity() {
         yVelocity = yVelocity + ((yAcceleration + gravity) * timePerTick);
+        yAcceleration = yAcceleration + gravity;
         //Gives a terminal velocity to the object
         if (yVelocity > yTerminalVelocity){
             yVelocity = yTerminalVelocity;
@@ -201,6 +202,31 @@ public class Movement extends Physics{
         xPos = xPos + CalculateXDistance();
         //CalculateYDistance();
         yPos = yPos + CalculateYDistance();
+    }
+
+    /**
+     * Updates the internal attributes to the new x and y position.
+     */
+    public void UpdatePosition() {
+        CalculateDistance();
+    }
+
+    /**
+     * Updates the internal attributes for the x and y velocities.
+     */
+    public void UpdateVelocities() {
+        CalculateXVelocity();
+        CalculateYVelocity();
+    }
+
+    public void UpdateMovement(){
+        //Must be done
+        //Position -> Velocity
+        //Otherwise the acceleration will be doubled because the velocity will increase and
+        //then the position will be updated with the faster velocity and the acceleration
+        UpdatePosition();
+
+        UpdateVelocities();
     }
 
     //x is the position horizontally

@@ -4,7 +4,7 @@ package Engine.InputHandler;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class Input implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
+public class Input implements KeyListener, MouseListener, MouseMotionListener{
 
 
     private final int KEY_AMOUNT = 256; //256 represents the keycodes for keyboard input.
@@ -14,8 +14,23 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
     private int mouseX, mouseY; //Mouse coordinate variables
     private int scroll;
 
+
     private final int MOUSE_BUTTONS = 5;//Left click, right click, middle click, scroll press and so on.
     private boolean mouseInput[] = new boolean[MOUSE_BUTTONS]; //array to keep track of mouse clicks.
+
+    public Input(){
+        mouseX = 0;
+        mouseY = 0;
+    }
+
+    public void KeyUpdate(){
+
+        for(int x = 0; x < KEY_AMOUNT; x++){
+
+            keysLast[x] = allKeys[x];
+        }
+
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -37,12 +52,12 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        mouseInput[e.getButton()] = true;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        mouseInput[e.getButton()] = false;
     }
 
     @Override
@@ -62,11 +77,17 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        mouseX = (int)(e.getX());
+        mouseY = (int)(e.getY());
     }
 
-    @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
-
+    public int getMouseX(){
+        return mouseX;
     }
+    public int getMouseY(){
+        return mouseY;
+    }
+
+
+
 }
