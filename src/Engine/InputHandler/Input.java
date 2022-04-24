@@ -18,6 +18,20 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
     private final int MOUSE_BUTTONS = 5;//Left click, right click, middle click, scroll press and so on.
     private boolean mouseInput[] = new boolean[MOUSE_BUTTONS]; //array to keep track of mouse clicks.
 
+    public Input(){
+        mouseX = 0;
+        mouseY = 0;
+    }
+
+    public void KeyUpdate(){
+
+        for(int x = 0; x < KEY_AMOUNT; x++){
+
+            keysLast[x] = allKeys[x];
+        }
+
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
