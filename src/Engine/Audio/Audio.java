@@ -256,7 +256,6 @@ public class Audio extends Thread {
      * @param mute a boolean determining whether an audio file is muted or not
      * @param buffSize an int determining the size of the audio buffer
      */
-
     public Audio(String filePath, double volume, float panAmount, boolean mute, int buffSize) {
         this.file = new File(filePath);
         this.volume = volume;
