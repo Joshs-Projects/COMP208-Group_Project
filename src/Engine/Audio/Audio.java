@@ -62,8 +62,10 @@ public class Audio extends Thread {
         }
         else {
             this.volume = volume;
-            // maps volume range from between 0 & 10 to decibels (logarithmic)
-            this.volControl.setValue((float) (6.0206 * Math.log10(this.volume)));
+            if (this.lineOut != null) {
+                // maps volume range from between 0 & 10 to decibels (logarithmic)
+                this.volControl.setValue((float) (6.0206 * Math.log10(this.volume)));
+            }
         }
     }
 
@@ -221,7 +223,7 @@ public class Audio extends Thread {
      */
     public Audio(String filePath) {
         this.file = new File(filePath);
-        setVolume(volume);
+        setVolume(5.0f);
         this.panAmount = 0.0f;
         this.mute = false;
         this.buffSize = 4096;
