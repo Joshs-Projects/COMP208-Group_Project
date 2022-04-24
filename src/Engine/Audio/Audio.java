@@ -49,14 +49,7 @@ public class Audio extends Thread {
      *
      * @return double volume
      */
-    public double getVolume() {
-        if (volume > 10 || volume < 0) {
-            throw new IllegalArgumentException("Volume value has to be in range [0.0, 10.0].");
-        }
-        else {
-            return volume;
-        }
-    }
+    public double getVolume() { return volume; }
 
     /**
      * Sets the volume attribute
@@ -64,8 +57,14 @@ public class Audio extends Thread {
      * @param volume a double representing the loudness of the audio file being played
      */
     public void setVolume(double volume) {
-        this.volume = volume;
-        this.volControl.setValue((float) (6.0206 * Math.log10(this.volume)));
+        if (volume > 10 || volume < 0) {
+            throw new IllegalArgumentException("Volume value has to be in range [0.0, 10.0].");
+        }
+        else {
+            this.volume = volume;
+            // maps volume range from between 0 & 10 to decibels (logarithmic)
+            this.volControl.setValue((float) (6.0206 * Math.log10(this.volume)));
+        }
     }
 
     /**
@@ -73,13 +72,7 @@ public class Audio extends Thread {
      *
      * @return float panAmount
      */
-    public float getPanAmount() {
-        if (panAmount > 1.0 || panAmount < -1.0 ) {
-            throw new IllegalArgumentException("panAmount value has to be in range [-1.0, 1.0].");
-        } else {
-            return panAmount;
-        }
-    }
+    public float getPanAmount() { return panAmount; }
 
     /**
      * Sets the panAmount attribute
@@ -87,8 +80,13 @@ public class Audio extends Thread {
      * @param panAmount a float representing the left (-1) to right (1) stereo image of the audio file
      */
     public void setPanAmount(float panAmount) {
-        this.panAmount = panAmount;
-        this.panControl.setValue(panAmount);
+        if (panAmount > 1.0 || panAmount < -1.0 ) {
+            throw new IllegalArgumentException("panAmount value has to be in range [-1.0, 1.0].");
+        }
+        else {
+            this.panAmount = panAmount;
+            this.panControl.setValue(panAmount);
+        }
     }
 
     /**
@@ -160,6 +158,7 @@ public class Audio extends Thread {
             isPlaying = false;
             lineOut.drain();
             lineOut.close();
+
         }
         catch ( IOException e) {
             e.printStackTrace();
@@ -201,7 +200,7 @@ public class Audio extends Thread {
         // System.out.println(lineOut.isControlSupported(FloatControl.Type.MASTER_GAIN));
         this.volControl = (FloatControl) this.lineOut.getControl(FloatControl.Type.MASTER_GAIN);
         // maps volume range from decibels (logarithmic) to between 0 & 10
-        this.volControl.setValue((float) (6.0206 * Math.log10(this.volume)));
+        this.volControl.setValue((float) this.volume);
 
         // CHANGES PAN
         // System.out.println(lineOut.isControlSupported(FloatControl.Type.PAN));
@@ -222,7 +221,7 @@ public class Audio extends Thread {
      */
     public Audio(String filePath) {
         this.file = new File(filePath);
-        this.volume = 2.0f;
+        setVolume(volume);
         this.panAmount = 0.0f;
         this.mute = false;
         this.buffSize = 4096;
@@ -239,7 +238,7 @@ public class Audio extends Thread {
      */
     public Audio(String filePath, double volume, float panAmount, boolean mute) {
         this.file = new File(filePath);
-        this.volume = volume;
+        setVolume(volume);
         this.panAmount = panAmount;
         this.mute = mute;
         openLine();
@@ -259,7 +258,7 @@ public class Audio extends Thread {
 
     public Audio(String filePath, double volume, float panAmount, boolean mute, int buffSize) {
         this.file = new File(filePath);
-        this.volume = volume;
+        setVolume(volume);
         this.panAmount = panAmount;
         this.mute = mute;
         this.buffSize = buffSize;
