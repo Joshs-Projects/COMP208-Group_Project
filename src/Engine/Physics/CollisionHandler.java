@@ -13,9 +13,6 @@ public class CollisionHandler {
 
     //private ArrayList<ArrayList<Movement>> collisions = new ArrayList<>();
 
-    /**
-     * @param newPhysicsObject
-     */
     public void addPhysicsObject(Movement newPhysicsObject){
         allPhysicsObjects.add(newPhysicsObject);
     }

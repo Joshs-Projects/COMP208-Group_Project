@@ -4,7 +4,7 @@ package Engine.Physics;
  * This class defines methods that help to organise how objects behave in the physics simulation.
  * It is different to the CharacterPhysics class as these objects can be locked and can't be moved by the user
  *
- * @Author Joshua Dowlman
+ * @author Joshua Dowlman
  */
 public class EntityPhysics extends Movement {
     private boolean isMovable;
