@@ -22,16 +22,13 @@ public class RendererTester {
 
         display.Window();
 
+        display.clearScreen();
+
         JFrame frame = display.getFrame();
 
-        imageRendering image = new imageRendering(frame);
+        textRendering text = new textRendering(frame);
 
-
-        image.addImage("stingRay.png",0,0,256,256);
-        image.addImage("stingRay.png",0,100,256,256);
-        image.addImage("stingRay.png",0,200,256,256);
-        image.addImage("stingRay.png",0,300,256,256);
-
+        text.addCustomText("Game Over...", 0,0, 20,"Arial",0, Color.BLUE, true, false);
 
     }
     /**

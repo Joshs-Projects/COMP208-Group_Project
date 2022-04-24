@@ -105,7 +105,7 @@ public class textRendering {
      * @param textFont a String storing the name of the font typeface.
      * @param textStyle a String storing the name of the font typestyle.
      * @param textColor a Color specifying the colour of the text.
-     * @param textReverse a boolean specifying weather the characters in text should be rendered in the opposite order.
+     * @param textReverse a boolean specifying whether the characters in text should be rendered in the opposite order.
      */
     public void addCustomText(String text,int textX,int textY,int textSize,String textFont, int textStyle, Color textColor, boolean textMirror, boolean textReverse){
 

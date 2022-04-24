@@ -20,11 +20,11 @@ public class imageRendering{
     /**
      * Render an image onto a defined window.
      *
-     * @param imageName a String storing the name and extension of the image.
+     * @param imageName a String storing the name and extension type of the image.
      * @param xPosition an integer specifying where on the x-axis the image should be drawn.
      * @param yPosition an integer specifying where on the y-axis the image should be drawn.
      * @param width an integer specifying the width of the image to define the size of the Jlabel.
-     * @param height an integer specifying the length of the image to define the size of the Jlabel.
+     * @param height an integer specifying the height of the image to define the size of the Jlabel.
      */
     public void addImage(String imageName,int xPosition, int yPosition, int width, int height){
 
@@ -47,7 +47,7 @@ public class imageRendering{
      * @param xPosition an integer specifying where on the x-axis the image should be drawn.
      * @param yPosition an integer specifying where on the y-axis the image should be drawn.
      * @param width an integer specifying the width of the image to define the size of the Jlabel.
-     * @param height an integer specifying the length of the image to define the size of the Jlabel.
+     * @param height an integer specifying the height of the image to define the size of the Jlabel.
      * @param hitColour a Color specifying the colour of the hit-box.
      * @param hitThickness an integer specifying the amount of pixels in the line surrounding the image.
      */

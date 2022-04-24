@@ -22,7 +22,7 @@ public class buttonRendering {
      * @param xPosition an integer specifying where on the x-axis the button should be drawn.
      * @param yPosition an integer specifying where on the y-axis the button should be drawn.
      * @param width an integer specifying the width of the button.
-     * @param height an integer specifying the length of the button.
+     * @param height an integer specifying the height of the button.
      */
     public void addButton(int xPosition, int yPosition, int width, int height){
 
@@ -41,7 +41,7 @@ public class buttonRendering {
      * @param xPosition an integer specifying where on the x-axis the button should be drawn.
      * @param yPosition an integer specifying where on the y-axis the button should be drawn.
      * @param width an integer specifying the width of the button.
-     * @param height an integer specifying the length of the button.
+     * @param height an integer specifying the height of the button.
      * @param imageName a String storing the name and extension of the image used as the background of the button.
      */
     public void addCustomButton(int xPosition, int yPosition, int width, int height, String imageName){
