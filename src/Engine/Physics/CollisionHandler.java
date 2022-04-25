@@ -2,6 +2,11 @@ package Engine.Physics;
 
 import java.util.ArrayList;
 
+/**
+ * This class defines methods that help to detect and handle collisions
+ *
+ * @author Joshua Dowlman
+ */
 public class CollisionHandler {
     //This is to keep track of which objects can collide.
     //The benefit of doing it this way is that you can have multiple planes/depths

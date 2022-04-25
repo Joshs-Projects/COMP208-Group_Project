@@ -1,5 +1,10 @@
 package Engine.Physics;
 
+/**
+ * This class defines methods and attributes useful when handling floor physics
+ *
+ * @author Joshua Dowlman
+ */
 public class Floor {
     private double rateOfSlowDown;
     private boolean passableWhenMovingUp;
@@ -121,5 +126,26 @@ public class Floor {
         this.rateOfSlowDown = rateOfSlowDown;
         this.passableWhenMovingUp = passableWhenMovingUp;
         this.passableWhenMovingDown = passableWhenMovingDown;
+    }
+
+    /**
+     * A constructor that sets the rateOfSlowDown, passableWhenMovingUp and passableWhenMovingDown, as well as position and size
+     *
+     * @param rateOfSlowDown A double that represents how much an object slows down
+     * @param passableWhenMovingUp A boolean to dictate if an object can move up through the floor
+     * @param passableWhenMovingDown A boolean to dictate if an object can move down through the floor
+     * @param posX an int representing the horizontal position
+     * @param posY an int representing the vertical position
+     * @param sizeX an int representing the horizontal size
+     * @param sizeY an int representing the vertical size
+     */
+    public Floor(double rateOfSlowDown, boolean passableWhenMovingUp, boolean passableWhenMovingDown, int posX, int posY, int sizeX, int sizeY){
+        this.rateOfSlowDown = rateOfSlowDown;
+        this.passableWhenMovingUp = passableWhenMovingUp;
+        this.passableWhenMovingDown = passableWhenMovingDown;
+        this.xPos = posX;
+        this.yPos = posY;
+        this.xSize = sizeX;
+        this.ySize = sizeY;
     }
 }

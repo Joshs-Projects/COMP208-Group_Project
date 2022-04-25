@@ -1,5 +1,10 @@
 package Engine.Physics;
 
+/**
+ * This class defines overall attributes common across all if not most attributes
+ *
+ * @author Joshua Dowlman
+ */
 public class Physics {
     protected double gravity;
 
