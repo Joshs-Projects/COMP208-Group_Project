@@ -12,6 +12,9 @@ public class textRendering {
 
     private final JFrame frame;
 
+    /**
+     * Constructor to pass in the frame.
+     */
     public textRendering(JFrame frame){
         this.frame = frame;
     }

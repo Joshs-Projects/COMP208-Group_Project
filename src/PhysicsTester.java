@@ -93,7 +93,6 @@ public class PhysicsTester {
         imageRendering image = new imageRendering(frame);
 
 
-
         image.addImage("TestAsset.png", character.getxPos(), character.getyPos(), character.getxSize(), character.getySize());
         image.addImage("TestAsset.png", character.getxPos()+300, character.getyPos(), character.getxSize(), character.getySize());
 

@@ -13,6 +13,9 @@ public class imageRendering{
 
     private final JFrame frame;
 
+    /**
+     * Constructor to pass in the frame.
+     */
     public imageRendering(JFrame frame){
         this.frame = frame;
     }
