@@ -1,13 +1,12 @@
+package Engine.Rendering;
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * draw buttons on a window, with a variety of customisation options.
  *
  * @author Ethan Myles.
  */
-
-package Engine.Rendering;
-import javax.swing.*;
-import java.awt.*;
-
 public class buttonRendering {
 
     private final JFrame frame;

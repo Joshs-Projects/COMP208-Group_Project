@@ -1,14 +1,13 @@
-/**
- * draw images on a window, with a variety of customisation options.
- *
- * @author Ethan Myles.
- */
-
 package Engine.Rendering;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
+/**
+ * draw images on a window, with a variety of customisation options.
+ *
+ * @author Ethan Myles.
+ */
 public class imageRendering{
 
     private final JFrame frame;

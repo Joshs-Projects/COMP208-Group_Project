@@ -1,9 +1,3 @@
-/**
- * To check the functions written in the classes associated with rendering perform correctly.
- *
- * @author Ethan Myles.
- */
-
 import Engine.Rendering.Renderer;
 import Engine.Rendering.buttonRendering;
 import Engine.Rendering.imageRendering;
@@ -12,6 +6,11 @@ import Engine.Rendering.textRendering;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * To check the functions written in the classes associated with rendering perform correctly.
+ *
+ * @author Ethan Myles.
+ */
 public class RendererTester {
 
     /**

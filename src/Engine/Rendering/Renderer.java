@@ -1,3 +1,7 @@
+package Engine.Rendering;
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Define the drawing of a window on the screen which objects can be later added to.
  * With some additional functionality to clear the screen which may be used for animations.
@@ -5,11 +9,6 @@
  *
  * @author Ethan Myles.
  */
-
-package Engine.Rendering;
-import javax.swing.*;
-import java.awt.*;
-
 public class Renderer {
     private final int xResolution;
     private final int yResolution;
