@@ -30,6 +30,10 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
         mouseY = 0;
     }
 
+    /**
+     * Every frame, the current frame's key inputs are turned into the previous frames.
+     * This is for the extra functionality later in the code.
+     */
     public void KeyUpdate(){
 
         for(int x = 0; x < KEY_AMOUNT; x++){
@@ -87,19 +91,42 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
         mouseX = (int)(e.getX());
         mouseY = (int)(e.getY());
     }
-
+    /**
+     * Returns the mouse X coordinate
+     *
+     * @return an integer of where the mouse X position is
+     */
     public int getMouseX(){
         return mouseX;
     }
+
+    /**
+     * Returns the mouse Y coordinate
+     *
+     * @return an integer of where the mouse Y position is
+     */
     public int getMouseY(){
         return mouseY;
     }
 
 
+    /**
+     * Returns either true or false depending on the inputted keycode has been pressed.
+     *
+     * @param keyCode An integer representing a character (A = 65, B = 66 etc.)
+     * @return A boolean value representing whether the key has been pressed
+     */
     public boolean isKeyPressed(int keyCode){
         return allKeys[keyCode];
     }
 
+    /**
+     * Returns a boolean depending on two conditions. The key has been pressed, and in the last frame the key wasn't pressed.
+     * If both these conditions are true the return value is true.
+     *
+     * @param keyCode An integer representing a character (A = 65, B = 66 etc.)
+     * @return A boolean value representing whether the key has been pressed, and that is wasn't previously pressed in the last frame
+     */
     public boolean isKeyJustDown(int keyCode){
         return allKeys[keyCode] && !keysLast[keyCode];
 
