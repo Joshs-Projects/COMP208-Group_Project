@@ -13,18 +13,38 @@ public class CollisionHandler {
 
     //private ArrayList<ArrayList<Movement>> collisions = new ArrayList<>();
 
+    /**
+     * Adds a specified object to the objects to be checked
+     *
+     * @param newPhysicsObject an object derived from movement to add to checking
+     */
     public void addPhysicsObject(Movement newPhysicsObject){
         allPhysicsObjects.add(newPhysicsObject);
     }
 
+    /**
+     * Removes a specified object from the objects to be checked
+     *
+     * @param removalPhysicsObject an object derived from Movement to remove from checking
+     */
     public void removePhysicsObject(Movement removalPhysicsObject){
         allPhysicsObjects.remove(removalPhysicsObject);
     }
 
+    /**
+     * Adds a specified floor to the floors to be checked
+     *
+     * @param newFloor a floor to be added
+     */
     public void addFloor(Floor newFloor){
         floors.add(newFloor);
     }
 
+    /**
+     * Removes a specified floor from the floors to be checked
+     *
+     * @param removalFloor a floor to be removed
+     */
     public void removeFloor(Floor removalFloor){
         floors.remove(removalFloor);
     }
@@ -36,6 +56,9 @@ public class CollisionHandler {
     //Rectangle being if between 2 horizontal and 2 vertical lines
     //As an extra allow the rectangle to be rotated.
 
+    /**
+     * Call this function to find and handle collisions between the previously given floors and objects
+     */
     public void findFloorCollisions(){
         for (int i = 0; i < allPhysicsObjects.size(); i++){
             int lowerY, upperY;
@@ -64,6 +87,9 @@ public class CollisionHandler {
         }
     }
 
+    /**
+     * Call this function to find all the collisions between the objects listed in it.
+     */
     public void findCollisions(){
         //For every physics object against every other physics object
         for (int i = 0; i < allPhysicsObjects.size(); i++){
@@ -129,16 +155,5 @@ public class CollisionHandler {
         //Post vs Pre
         //Implement both and leave it up to the developer and their purposes.
 
-    }
-
-    public void HandleCollisions(){
-        //When a collision is found handle it on one of a few ways
-        //If one of the colliding bodies is immovable set velocity of other body to 0
-        //If one body is a character and the other is an entity movable calculate resulting movement.
-            //This is similair to both bodies being an entity
-        //If both are characters then use forces of characters to calculate resulting movement
-
-        //Put a default handler in here then let this be overridden if a different behaviour is wanted?
-        //Maybe this should just call objects collision methods with the objects it collides with.
     }
 }

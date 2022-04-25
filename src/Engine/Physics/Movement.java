@@ -219,6 +219,9 @@ public class Movement extends Physics{
         CalculateYVelocity();
     }
 
+    /**
+     * Updates every attribute relevant to position
+     */
     public void UpdateMovement(){
         //Must be done
         //Position -> Velocity
