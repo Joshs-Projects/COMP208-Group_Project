@@ -4,6 +4,13 @@ package Engine.InputHandler;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * This class defines methods for gathering data for Keyboard and Mouse input
+ * It uses Event Listeners to wait for input.
+ * It allows the user to implement features that listen for input.
+ *
+ * @author Daniel Dineen
+ */
 public class Input implements KeyListener, MouseListener, MouseMotionListener{
 
 
@@ -34,7 +41,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        allKeys[e.getKeyCode()] = true; //This tells the user that the key is being pressed
     }
 
     public void keyPressed(KeyEvent e){
@@ -89,5 +96,13 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
     }
 
 
+    public boolean isKeyPressed(int keyCode){
+        return allKeys[keyCode];
+    }
+
+    public boolean isKeyJustDown(int keyCode){
+        return allKeys[keyCode] && !keysLast[keyCode];
+
+    }
 
 }
