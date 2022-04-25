@@ -12,6 +12,9 @@ public class buttonRendering {
 
     private final JFrame frame;
 
+    /**
+     * Constructor to pass in the frame.
+     */
     public buttonRendering(JFrame frame){
         this.frame = frame;
     }
