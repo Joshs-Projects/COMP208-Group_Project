@@ -1,5 +1,11 @@
 package Engine.Physics;
 
+/**
+ * This class defines methods that help to organise how objects behave in the physics simulation.
+ * It is different to the EntityPhysics class as these objects can be moved by the user
+ *
+ * @author Joshua Dowlman
+ */
 public class CharacterPhysics extends Movement {
     private double forcePushedInX;
     private double forcePushedInY;
@@ -46,7 +52,7 @@ public class CharacterPhysics extends Movement {
      * @param ticksToStop an integer representing the amount of time to act upon
      */
     public void slowXToZero(int ticksToStop){
-        xAcceleration = xVelocity / ticksToStop;
+        this.xAcceleration = this.xVelocity / ticksToStop;
         slowingXToZero = true;
         ticksXToZero = ticksToStop;
     }

@@ -9,6 +9,11 @@ enum Shapes {
     Circle
 }
 
+/**
+ * This class defines methods that help to organise how objects move in the physics simulation.
+ *
+ * @author Joshua Dowlman
+ */
 public class Movement extends Physics{
     protected double xVelocity;
     protected double yVelocity;
